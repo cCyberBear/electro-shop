@@ -1,10 +1,12 @@
 import "./App.css";
-import { Button } from "antd";
+import Header from "./components/Header/Header";
+import ToolBar from "./components/ToolBar/ToolBar";
 
 function App() {
   return (
     <div className="App">
-      <Button type="primary">hi</Button>
+      <Header />
+      <ToolBar />
     </div>
   );
 }
