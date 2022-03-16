@@ -6,35 +6,37 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className="Header">
       <div className="container">
         <p>
-          <a href="">Welcome to Worldwide Electronics Store</a>
+          <a>Welcome to Worldwide Electronics Store</a>
         </p>
         <ul>
           <li>
-            <a href="">
+            <a>
               <AimOutlined />
               Store Locator
             </a>
           </li>
           <li>
-            <a href="">
+            <a>
               <InboxOutlined />
               Track Your Order
             </a>
           </li>
           <li>
-            <a href="">
+            <a>
               <ShoppingOutlined />
               Shop
             </a>
           </li>
           <li>
-            <a className="last-child" href="">
+            <a className="last-child" onClick={() => navigate("/my-account")}>
               <UserOutlined />
               My Account
             </a>

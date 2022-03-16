@@ -10,9 +10,11 @@ import {
 import { ReactComponent as Svg } from "../../asset/logo.svg";
 import { Input, Select, Button, Popover, Drawer } from "antd";
 import "./toolBar.scss";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 const ToolBar = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [select, setSelect] = useState("");
   const [visible, setVisible] = useState(false);
@@ -29,7 +31,8 @@ const ToolBar = () => {
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
-      className="select-after">
+      className="select-after"
+    >
       <Option value=".com">.com</Option>
       <Option value=".jp">.jp</Option>
       <Option value=".cn">.cn</Option>
@@ -41,7 +44,7 @@ const ToolBar = () => {
     <>
       <div className="ToolBar">
         <div className="container">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate("/")}>
             <Svg />
           </div>
           <div className="search">
@@ -57,8 +60,9 @@ const ToolBar = () => {
               onClick={() => {
                 onSearch(input + select);
               }}
-              type="primary">
-              <SearchOutlined />
+              type="primary"
+            >
+              <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
           <div className="userAction">
@@ -85,7 +89,8 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}>
+        visible={visible}
+      >
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>

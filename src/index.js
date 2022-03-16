@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
-import "antd/dist/antd.min.css";
+import "antd/dist/antd.less";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(

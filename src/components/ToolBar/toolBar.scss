@@ -1,5 +1,8 @@
 .ToolBar {
-  margin: 20px 0px;
+  margin: 30px 0px;
+  .logo {
+    cursor: pointer;
+  }
   .container {
     display: flex;
     justify-content: space-between;

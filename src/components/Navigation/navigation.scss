@@ -1,0 +1,31 @@
+.Navigation {
+  background-color: #fed700;
+  font-weight: bold;
+
+  ul {
+    padding-left: 0px;
+    display: flex;
+    align-items: center;
+    li {
+      padding: 15px 20px;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      span {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+      a {
+        color: black;
+        display: block;
+        &:hover {
+          color: black;
+        }
+      }
+      &:hover {
+        background-color: #e7c400;
+      }
+    }
+  }
+}
