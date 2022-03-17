@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation/Navigation";
 
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
+import Branding from "./components/Branding/Branding";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/my-account" element={<MyAcount />}></Route>
       </Routes>
+      <Branding />
       <Footer />
     </div>
   );

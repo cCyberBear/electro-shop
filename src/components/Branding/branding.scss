@@ -1,0 +1,21 @@
+.Branding {
+  .container {
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    .react-multiple-carousel__arrow--right {
+      right: calc(-1% + 1px);
+    }
+    .react-multiple-carousel__arrow--left {
+      left: calc(-1% + 1px);
+    }
+    .react-multiple-carousel__arrow {
+      background: none;
+    }
+    .react-multiple-carousel__arrow::before {
+      color: black;
+    }
+    img {
+      padding: 20px;
+    }
+  }
+}
