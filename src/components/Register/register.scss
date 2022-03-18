@@ -3,4 +3,14 @@
   p {
     font-size: 20px;
   }
+  h1.title {
+    border-bottom: 1px solid #bbb;
+    position: relative;
+    .divider {
+      position: absolute;
+      width: 100px;
+      border-top: 2px solid #fed700;
+      bottom: -1px;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
-import "./register.scss"
+import "./register.scss";
 
 const Register = ({ width }) => {
   const onFinish = (values) => {
@@ -10,20 +10,21 @@ const Register = ({ width }) => {
     <div className="Register" style={{ width: width }}>
       <Form
         name="basic"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
-            <h1>Register</h1>
+        autoComplete="off">
+        <Form.Item>
+          <h1 className="title">
+            Register
+            <div className="divider"></div>
+          </h1>
         </Form.Item>
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
+          rules={[{ required: true, message: "Please input your username!" }]}>
           <Input />
         </Form.Item>
 
@@ -36,39 +37,36 @@ const Register = ({ width }) => {
               required: true,
               message: "is not a valid email!",
             },
-          ]}
-        >
+          ]}>
           <Input />
         </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
+          rules={[{ required: true, message: "Please input your password!" }]}>
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
+        <Form.Item>
           Your personal data will be used to support your experience throughout
           this website, to manage access to your account, and for other purposes
           described in our privacy policy.
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Register
           </Button>
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
-            <p>Sign up today and you will be able to :</p>
-            <ul>
-                <li>Speed your way through checkout</li>
-                <li>Track your orders easily</li>
-                <li>Keep a record of all your purchases</li>
-            </ul>
+        <Form.Item>
+          <p>Sign up today and you will be able to :</p>
+          <ul>
+            <li>Speed your way through checkout</li>
+            <li>Track your orders easily</li>
+            <li>Keep a record of all your purchases</li>
+          </ul>
         </Form.Item>
       </Form>
-
     </div>
   );
 };

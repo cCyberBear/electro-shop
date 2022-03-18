@@ -10,40 +10,35 @@ const Login = ({ width }) => {
     <div className="Login" style={{ width: width }}>
       <Form
         name="basic"
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
-          <h1>Login</h1>
+        autoComplete="off">
+        <Form.Item>
+          <h1 className="title">
+            Login<div className="divider"></div>
+          </h1>
         </Form.Item>
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
+          rules={[{ required: true, message: "Please input your username!" }]}>
           <Input />
         </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
+          rules={[{ required: true, message: "Please input your password!" }]}>
           <Input.Password />
         </Form.Item>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 4, span: 20 }}
-        >
+        <Form.Item name="remember" valuePropName="checked">
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Login
           </Button>
