@@ -1,0 +1,84 @@
+.SliderBoard {
+  width: 75%;
+  .item {
+    display: flex !important;
+    height: 403px;
+    align-items: center;
+
+    .text {
+      width: 50%;
+      h1 {
+        margin: 0;
+        width: fit-content;
+      }
+    }
+    img {
+      width: 60%;
+      height: 130%;
+      margin: 0;
+    }
+  }
+  .item2 {
+    display: flex !important;
+    align-items: center;
+    height: 403px;
+    .text {
+      width: 70%;
+      h1 {
+        margin: 0;
+        width: fit-content;
+        line-height: 90%;
+        margin-bottom: 20px;
+      }
+    }
+    img {
+      width: 40%;
+      height: 110%;
+      margin: 0;
+    }
+  }
+  .ant-carousel .slick-dots li button {
+    background: #fed700 !important;
+    border-radius: 3px !important;
+    height: 5px !important;
+  }
+  .ant-carousel .slick-dots {
+    justify-content: start !important;
+  }
+  .text {
+    padding: 0px 0 0 100px;
+    h1 {
+      font-size: 45px;
+      line-height: 80%;
+      font-weight: normal;
+    }
+    p {
+      padding: 10px 0 0 0;
+      margin: 0;
+    }
+    p.above {
+      padding: 0px 0 0 0;
+      font-weight: bold;
+    }
+    .form {
+      line-height: 50%;
+    }
+    p.price {
+      padding: 0px 0 0 0;
+      font-size: 50px;
+      font-weight: bold;
+    }
+    button {
+      border-radius: 10px !important;
+      padding: 10px 50px;
+      border: #fed700 solid 1px;
+      background-color: #fed700;
+      font-size: 20px;
+    }
+    .shop {
+      color: #3fbfed;
+      font-weight: 700;
+      font-size: 22px;
+    }
+  }
+}

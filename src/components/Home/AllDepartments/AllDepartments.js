@@ -1,16 +1,9 @@
 import React from "react";
-import { MenuOutlined } from "@ant-design/icons";
 import "./allDepartments.scss";
 import { Menu } from "antd";
 const AllDepartments = () => {
   return (
     <div className="AllDepartments">
-      <div className="title">
-        <p>
-          <MenuOutlined />
-          All Departments
-        </p>
-      </div>
       <Menu>
         <Menu.Item>Value of the Day</Menu.Item>
         <Menu.Item>Top 100 Offers</Menu.Item>
