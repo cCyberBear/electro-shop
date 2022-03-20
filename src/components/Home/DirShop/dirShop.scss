@@ -1,0 +1,47 @@
+.DirShop {
+  margin: 20px 0;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .item {
+      width: 25%;
+      cursor: pointer;
+      .main {
+        padding: 10px;
+        margin: 10px;
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        img {
+          width: 50%;
+        }
+        .text {
+          p {
+            font-size: 18px;
+            line-height: 93%;
+            margin: 0;
+          }
+          p.shop {
+            margin-top: 10px;
+            font-weight: bold;
+            span {
+              margin-left: 10px;
+              color: #fed700;
+            }
+          }
+        }
+      }
+      &:first-child {
+        .main {
+          margin-left: 0px;
+        }
+      }
+      &:last-child {
+        .main {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+}

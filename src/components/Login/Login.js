@@ -1,10 +1,15 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import "./login.scss";
+import { login } from "../../action/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ width }) => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.userReducer.loading);
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    dispatch(login(values));
   };
   return (
     <div className="Login" style={{ width: width }}>
@@ -14,23 +19,32 @@ const Login = ({ width }) => {
         wrapperCol={{ span: 24 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        autoComplete="off">
+        autoComplete="off"
+      >
         <Form.Item>
           <h1 className="title">
             Login<div className="divider"></div>
           </h1>
         </Form.Item>
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}>
+          label="Email"
+          name="email"
+          rules={[
+            {
+              type: "email",
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
           <Input />
         </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}>
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
           <Input.Password />
         </Form.Item>
 
@@ -39,7 +53,7 @@ const Login = ({ width }) => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Login
           </Button>
         </Form.Item>

@@ -1,10 +1,15 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import "./register.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../action/userActions";
 
 const Register = ({ width }) => {
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.userReducer.loading);
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    dispatch(register(values));
   };
   return (
     <div className="Register" style={{ width: width }}>
@@ -14,7 +19,8 @@ const Register = ({ width }) => {
         wrapperCol={{ span: 24 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        autoComplete="off">
+        autoComplete="off"
+      >
         <Form.Item>
           <h1 className="title">
             Register
@@ -24,7 +30,8 @@ const Register = ({ width }) => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}>
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
           <Input />
         </Form.Item>
 
@@ -37,14 +44,16 @@ const Register = ({ width }) => {
               required: true,
               message: "is not a valid email!",
             },
-          ]}>
+          ]}
+        >
           <Input />
         </Form.Item>
 
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}>
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
           <Input.Password />
         </Form.Item>
 
@@ -54,7 +63,7 @@ const Register = ({ width }) => {
           described in our privacy policy.
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Register
           </Button>
         </Form.Item>
