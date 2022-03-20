@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Special.scss";
 const countTime = (date) => {
   const offDate = new Date(date);
@@ -13,9 +13,15 @@ const countTime = (date) => {
 };
 const Special = () => {
   const [time, setTime] = useState({});
-  // setInterval(() => {
-  //   setTime(countTime("03-22-2022"));
-  // }, 1000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(countTime("03-26-2025"));
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div className="Special">
       <div className="container">

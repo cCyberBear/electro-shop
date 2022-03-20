@@ -8,20 +8,38 @@ import Branding from "./components/Branding/Branding";
 import TopProduct from "./components/TopProduct/TopProduct";
 import SignUpMail from "./components/SignupByMail/SignUpMail";
 import Home from "./components/Home/Home";
+import { useState, useEffect } from "react";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
 
 const App = () => {
+  const [splash, setSplash] = useState(true);
+  useEffect(() => {
+    const timout = setTimeout(() => {
+      setSplash(false);
+    }, 3000);
+    return () => {
+      clearInterval(timout);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <Header />
-      <ToolBar />
-      <Routes>
-        <Route path="/my-account" element={<MyAcount />}></Route>
-        <Route path="/" element={<Home />}></Route>
-      </Routes>
-      <Branding />
-      <TopProduct />
-      <SignUpMail />
-      <Footer />
+      {splash ? (
+        <SplashScreen />
+      ) : (
+        <>
+          <Header />
+          <ToolBar />
+          <Routes>
+            <Route path="/my-account" element={<MyAcount />}></Route>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
+          <Branding />
+          <TopProduct />
+          <SignUpMail />
+          <Footer />
+        </>
+      )}
     </div>
   );
 };

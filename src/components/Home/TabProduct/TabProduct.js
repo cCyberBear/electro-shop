@@ -1,6 +1,7 @@
 import React from "react";
 import "./TabProduct.scss";
-import { Tabs } from "antd";
+import { Tabs, Row, Col } from "antd";
+import ProductStyle1 from "../../ProductStyle1/ProductStyle1";
 
 const { TabPane } = Tabs;
 
@@ -8,14 +9,89 @@ const TabProduct = () => {
   return (
     <div className="TabProduct">
       <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="Tab 1" key="1">
-          Content of Tab Pane 1
+        <TabPane tab="Featured" key="1">
+          <Row>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+          </Row>
         </TabPane>
-        <TabPane tab="Tab 2" key="2">
-          Content of Tab Pane 2
+        <TabPane tab="On Sale" key="2">
+          <Row>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+          </Row>
         </TabPane>
-        <TabPane tab="Tab 3" key="3">
-          Content of Tab Pane 3
+        <TabPane tab="Top Rate" key="3">
+          <Row>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+            <Col span={6}>
+              <ProductStyle1 />
+            </Col>
+          </Row>
         </TabPane>
       </Tabs>
     </div>
