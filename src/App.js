@@ -12,6 +12,8 @@ import { useState, useEffect } from "react";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
 import Details from "./components/MyAcount/Details/Details";
 import Orders from "./components/MyAcount/Orders/Orders";
+import ListUser from "./components/MyAcount/ListUser/ListUser";
+import Shop from "./components/Shop/Shop";
 
 const App = () => {
   const [splash, setSplash] = useState(true);
@@ -34,13 +36,12 @@ const App = () => {
           <ToolBar />
           <Routes>
             <Route path="my-account" element={<MyAcount />}>
-              <Route exact path="details" element={<Details />}></Route>
-              <Route
-                exact
-                path="/my-account/orders"
-                element={<Orders />}></Route>
+              <Route path="details" element={<Details />}></Route>
+              <Route path="orders" element={<Orders />}></Route>
+              <Route path="list-all-user" element={<ListUser />}></Route>
             </Route>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/shop" element={<Shop />}></Route>
           </Routes>
           <Branding />
           <TopProduct />

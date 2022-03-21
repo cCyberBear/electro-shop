@@ -7,6 +7,7 @@ import "./myAccount.scss";
 import { useSelector } from "react-redux";
 import { Alert } from "antd";
 import Logged from "../Logged/Logged";
+import LoggedManager from "../LoggedManager/LoggedManager";
 
 const MyAcount = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -26,7 +27,7 @@ const MyAcount = () => {
           />
         )}
         {user ? (
-          <Logged />
+          <LoggedManager />
         ) : (
           <div style={{ display: "flex", padding: "50px 0" }}>
             <Login width={"50%"} />
