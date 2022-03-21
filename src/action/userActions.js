@@ -36,4 +36,9 @@ const login = (data) => async (dispatch) => {
 const setLoading = (loading) => (dispatch) => {
   dispatch({ type: SET_LOADING, payload: loading });
 };
-export { register, login, setLoading };
+const logOut = (navigate) => (dispatch) => {
+  navigate("/");
+  dispatch({ type: SET_USER, payload: null });
+  localStorage.removeItem("token");
+};
+export { register, login, setLoading, logOut };

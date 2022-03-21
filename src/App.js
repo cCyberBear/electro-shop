@@ -10,6 +10,8 @@ import SignUpMail from "./components/SignupByMail/SignUpMail";
 import Home from "./components/Home/Home";
 import { useState, useEffect } from "react";
 import SplashScreen from "./components/SplashScreen/SplashScreen";
+import Details from "./components/MyAcount/Details/Details";
+import Orders from "./components/MyAcount/Orders/Orders";
 
 const App = () => {
   const [splash, setSplash] = useState(true);
@@ -31,7 +33,13 @@ const App = () => {
           <Header />
           <ToolBar />
           <Routes>
-            <Route path="/my-account" element={<MyAcount />}></Route>
+            <Route path="my-account" element={<MyAcount />}>
+              <Route exact path="details" element={<Details />}></Route>
+              <Route
+                exact
+                path="/my-account/orders"
+                element={<Orders />}></Route>
+            </Route>
             <Route path="/" element={<Home />}></Route>
           </Routes>
           <Branding />
