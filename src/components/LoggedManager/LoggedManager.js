@@ -25,22 +25,26 @@ const LoggedManager = () => {
         <Menu style={{ width: "30%" }}>
           <Menu.Item
             onClick={() => navigate("/my-account/details")}
-            icon={<UserOutlined />}>
+            icon={<UserOutlined />}
+          >
             Account details
           </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/my-account/list-all-user")}
-            icon={<TeamOutlined />}>
+            icon={<TeamOutlined />}
+          >
             All Users
           </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/my-account/orders")}
-            icon={<ShoppingOutlined />}>
-            Oders
+            icon={<ShoppingOutlined />}
+          >
+            All Oders
           </Menu.Item>
           <Menu.Item
             onClick={() => dispatch(logOut(navigate))}
-            icon={<LogoutOutlined />}>
+            icon={<LogoutOutlined />}
+          >
             Logout
           </Menu.Item>
         </Menu>

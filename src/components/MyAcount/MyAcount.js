@@ -27,8 +27,10 @@ const MyAcount = () => {
           />
         )}
 
-        {user ? (
+        {user?.role === "admin" ? (
           <LoggedManager />
+        ) : user?.role === "customer" ? (
+          <Logged />
         ) : (
           <div style={{ display: "flex", padding: "50px 0" }}>
             <Login width={"50%"} />
