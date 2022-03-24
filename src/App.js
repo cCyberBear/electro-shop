@@ -14,13 +14,22 @@ import Details from "./components/MyAcount/Details/Details";
 import Orders from "./components/MyAcount/Orders/Orders";
 import ListUser from "./components/MyAcount/ListUser/ListUser";
 import Shop from "./components/Shop/Shop";
+import { useDispatch } from "react-redux";
+import { getCategory, getProduct } from "./action/productAction";
+import { getCurrentUser } from "./action/userActions";
+import axios from "axios";
 
 const App = () => {
   const [splash, setSplash] = useState(true);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getCategory());
+    dispatch(getProduct());
+    const token = localStorage.getItem("token");
+    dispatch(getCurrentUser(token));
     const timout = setTimeout(() => {
       setSplash(false);
-    }, 3000);
+    }, 5000);
     return () => {
       clearInterval(timout);
     };

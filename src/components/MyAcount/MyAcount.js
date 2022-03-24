@@ -26,6 +26,7 @@ const MyAcount = () => {
             closable
           />
         )}
+
         {user ? (
           <LoggedManager />
         ) : (

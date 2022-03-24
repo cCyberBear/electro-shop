@@ -6,7 +6,7 @@ import { register } from "../../action/userActions";
 
 const Register = ({ width }) => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.userReducer.loading);
+  const loading = useSelector((state) => state.userReducer.loading2);
 
   const onFinish = (values) => {
     dispatch(register(values));

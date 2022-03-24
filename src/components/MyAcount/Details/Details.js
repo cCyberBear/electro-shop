@@ -1,27 +1,22 @@
 import { Button, Divider, Form, Input } from "antd";
 import React from "react";
 import "./Details.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changePassword } from "../../../action/userActions";
 
 const Details = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user);
-
+  const loading = useSelector((state) => state.userReducer.loading1);
   const layout = {
     labelCol: { span: 24 },
     wrapperCol: { span: 24 },
   };
   const validateMessages = {
     required: "${label} is required!",
-    types: {
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
   };
   const onFinish = (values) => {
-    console.log(values);
+    dispatch(changePassword(values));
   };
   return (
     <div className="Details">
@@ -31,8 +26,8 @@ const Details = () => {
       <Form
         {...layout}
         name="nest-messages"
-        onFinish={onFinish}
-        validateMessages={validateMessages}>
+        validateMessages={validateMessages}
+      >
         <Form.Item label="Username">
           <Input disabled value={user.username} />
         </Form.Item>
@@ -43,21 +38,23 @@ const Details = () => {
       <Divider orientation="left" plain>
         <h2>Password change</h2>
       </Divider>
-      <Form {...layout}>
+      <Form {...layout} onFinish={onFinish}>
         <Form.Item
           label="Old password"
           name="oldPassword"
-          rules={[{ required: true, message: "Please input your password!" }]}>
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
           <Input.Password />
         </Form.Item>
         <Form.Item
           label="New password"
           name="newPassword"
-          rules={[{ required: true, message: "Please input your password!" }]}>
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
           <Input.Password />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Submit
           </Button>
         </Form.Item>

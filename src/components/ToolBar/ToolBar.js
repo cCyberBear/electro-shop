@@ -11,6 +11,7 @@ import { ReactComponent as Svg } from "../../asset/logo.svg";
 import { Input, Select, Button, Popover, Drawer } from "antd";
 import "./toolBar.scss";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const { Option } = Select;
 const ToolBar = () => {
@@ -27,16 +28,18 @@ const ToolBar = () => {
   const onSearch = (values) => {
     console.log(values);
   };
+  const category = useSelector((state) => state.productReducer.category);
   const selectAfter = (
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
       className="select-after"
     >
-      <Option value=".com">.com</Option>
-      <Option value=".jp">.jp</Option>
-      <Option value=".cn">.cn</Option>
-      <Option value=".org">.org</Option>
+      {category.map((cat) => (
+        <Option value={cat._id} key={cat._id}>
+          {cat.name}
+        </Option>
+      ))}
     </Select>
   );
 

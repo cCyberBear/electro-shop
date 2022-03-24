@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ width }) => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.userReducer.loading);
+  const loading = useSelector((state) => state.userReducer.loading1);
 
   const onFinish = (values) => {
     dispatch(login(values));
