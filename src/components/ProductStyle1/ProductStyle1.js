@@ -4,9 +4,12 @@ import {
   RetweetOutlined,
 } from "@ant-design/icons";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setCart, setCompare, setWishlist } from "../../action/productAction";
 import "./ProductStyle1.scss";
 
-const ProductStyle1 = ({ name, img, retailPrice, type, forSale }) => {
+const ProductStyle1 = ({ id, name, img, retailPrice, type, forSale }) => {
+  const dispatch = useDispatch();
   return (
     <div className="ProductStyle1">
       {type.map((ty) => (
@@ -18,14 +21,14 @@ const ProductStyle1 = ({ name, img, retailPrice, type, forSale }) => {
       </div>
       <div className="sop">
         <p className="price">${retailPrice}.00</p>
-        <ShoppingCartOutlined />
+        <ShoppingCartOutlined onClick={() => dispatch(setCart(id))} />
       </div>
       <div className="tool">
-        <div className="flex">
+        <div className="flex" onClick={() => dispatch(setWishlist(id))}>
           <HeartOutlined />
           <p>Wishlist</p>
         </div>
-        <div className="flex">
+        <div className="flex" onClick={() => dispatch(setCompare(id))}>
           <RetweetOutlined />
           <p>Compare</p>
         </div>

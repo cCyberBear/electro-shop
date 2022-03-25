@@ -8,7 +8,7 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons";
 import { ReactComponent as Svg } from "../../asset/logo.svg";
-import { Input, Select, Button, Popover, Drawer } from "antd";
+import { Input, Select, Button, Popover, Drawer, Dropdown, Menu } from "antd";
 import "./toolBar.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -33,14 +33,20 @@ const ToolBar = () => {
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
-      className="select-after"
-    >
+      className="select-after">
       {category.map((cat) => (
         <Option value={cat._id} key={cat._id}>
           {cat.name}
         </Option>
       ))}
     </Select>
+  );
+  const cart = (
+    <Menu style={{ borderTop: "2px solid #fed700" }}>
+      <Menu.Item>1st menu item</Menu.Item>
+      <Menu.Item>2nd menu item</Menu.Item>
+      <Menu.Item>3rd menu item</Menu.Item>
+    </Menu>
   );
 
   return (
@@ -63,8 +69,7 @@ const ToolBar = () => {
               onClick={() => {
                 onSearch(input + select);
               }}
-              type="primary"
-            >
+              type="primary">
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
@@ -79,10 +84,16 @@ const ToolBar = () => {
               <UserOutlined />
             </Popover>
             <Popover placement="bottom" content={"Cart"} trigger="hover">
-              <p>
-                <ShoppingOutlined />
-                $0.00
-              </p>
+              <Dropdown
+                overlay={cart}
+                placement="bottomRight"
+                trigger={["click"]}
+                arrow>
+                <p>
+                  <ShoppingOutlined />
+                  $0.00
+                </p>
+              </Dropdown>
             </Popover>
           </div>
         </div>
@@ -92,8 +103,7 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}
-      >
+        visible={visible}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>

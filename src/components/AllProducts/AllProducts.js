@@ -14,6 +14,7 @@ const AllProducts = () => {
         {products.map((pro) => (
           <Col span={6}>
             <ProductStyle1
+              id={pro._id}
               name={pro.name}
               img={pro.img}
               retailPrice={pro.retailPrice}

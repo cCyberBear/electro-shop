@@ -1,5 +1,11 @@
 import axios from "axios";
-import { SET_CATEGORY, SET_PRODUCT } from "../type";
+import {
+  SET_CATEGORY,
+  SET_PRODUCT,
+  SET_CART,
+  SET_COMPARE,
+  SET_WISHLIST,
+} from "../type";
 
 const getCategory = () => async (dispatch) => {
   const res = await axios.get(
@@ -19,4 +25,15 @@ const getProduct = () => async (dispatch) => {
   });
   dispatch({ type: SET_PRODUCT, payload: products });
 };
-export { getCategory, getProduct };
+
+const setCart = (id) => (dispatch) => {
+  dispatch({ type: SET_CART, payload: id });
+};
+
+const setWishlist = (id) => (dispatch) => {
+  dispatch({ type: SET_WISHLIST, payload: id });
+};
+const setCompare = (id) => (dispatch) => {
+  dispatch({ type: SET_COMPARE, payload: id });
+};
+export { setCart, setCompare, setWishlist, getCategory, getProduct };
