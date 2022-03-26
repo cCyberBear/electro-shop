@@ -11,17 +11,21 @@ const Footer = () => {
           <div className="contact">
             <Svg />
             <div className="phone">
-              <CustomerServiceOutlined style={{fontSize:"60px",fontWeight:"bold",color:"#fed700"}}/>
+              <CustomerServiceOutlined
+                style={{
+                  fontSize: "60px",
+                  fontWeight: "bold",
+                  color: "#fed700",
+                }}
+              />
               <div className="text">
                 <p>Got Questions ? Call us 24/7!</p>
-                <h1>(800) 8001-8588, (0600) 874 548</h1>
+                <h1>090 960 xxxx - 1800 2326</h1>
               </div>
             </div>
 
             <p className="contact">Contact Info</p>
-            <div className="add">
-              17 Princess Road, London, Greater London NW1 8JR, UK
-            </div>
+            <div className="add">Quarter 6, Linh Xuan, Ho Chi Minh City</div>
           </div>
           <div className="linking">
             <ul>
@@ -58,7 +62,10 @@ const Footer = () => {
       <div className="copyright">
         <div className="container">
           <p>© Electro - All Rights Reserved</p>
-          <img src="https://electro.madrasthemes.com/wp-content/uploads/2021/03/patment-icon1.png" alt="" />
+          <img
+            src="https://electro.madrasthemes.com/wp-content/uploads/2021/03/patment-icon1.png"
+            alt=""
+          />
         </div>
       </div>
     </>

@@ -47,8 +47,7 @@ const ToolBar = () => {
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
-      className="select-after"
-    >
+      className="select-after">
       {category.map((cat) => (
         <Option value={cat._id} key={cat._id}>
           {cat.name}
@@ -73,8 +72,7 @@ const ToolBar = () => {
           style={{
             borderTop: "2px solid #fed700",
             maxHeight: "325px",
-          }}
-        >
+          }}>
           <Menu.Item style={{ margin: "20px" }}>No products in cart</Menu.Item>
         </Menu>
       ) : (
@@ -85,8 +83,7 @@ const ToolBar = () => {
               maxHeight: "325px",
               overflowY: "scroll",
             }}
-            onClick={handleMenuClick}
-          >
+            onClick={handleMenuClick}>
             {cartItems.map((item) => (
               <MiniCart
                 id={item._id}
@@ -127,8 +124,7 @@ const ToolBar = () => {
               onClick={() => {
                 onSearch(input + select);
               }}
-              type="primary"
-            >
+              type="primary">
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
@@ -140,7 +136,7 @@ const ToolBar = () => {
               <HeartOutlined />
             </Popover>
             <Popover placement="bottom" content={"My Acount"} trigger="hover">
-              <UserOutlined />
+              <UserOutlined onClick={() => navigate("/my-account")} />
             </Popover>
             <Popover placement="bottom" content={"Cart"} trigger="hover">
               <Dropdown
@@ -148,8 +144,7 @@ const ToolBar = () => {
                 placement="bottomRight"
                 trigger={["click"]}
                 onVisibleChange={handleVisibleChange}
-                visible={state.visible}
-              >
+                visible={state.visible}>
                 <div className="cartt">
                   <p>
                     <ShoppingOutlined />
@@ -166,8 +161,7 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}
-      >
+        visible={visible}>
         <AllCategories width={"100%"} />
       </Drawer>
     </>

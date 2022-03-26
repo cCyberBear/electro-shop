@@ -40,8 +40,9 @@ const setWishlist = (id) => (dispatch) => {
 const setCompare = (id) => (dispatch) => {
   dispatch({ type: SET_COMPARE, payload: id });
 };
-const setFilter = (subid) => (dispatch) => {
+const setFilter = (subid, navigate) => (dispatch) => {
   dispatch({ type: SET_FILTERED, payload: subid });
+  navigate("/shop");
 };
 export {
   setCart,
