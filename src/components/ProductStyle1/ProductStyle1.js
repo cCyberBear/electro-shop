@@ -12,9 +12,7 @@ const ProductStyle1 = ({ id, name, img, retailPrice, type, forSale }) => {
   const dispatch = useDispatch();
   return (
     <div className="ProductStyle1">
-      {type.map((ty) => (
-        <span className="type">{ty.subName} </span>
-      ))}
+      <span className="type">{type[0].subName} </span>
       <p className="name">{name}</p>
       <div className="img">
         <img src={img} alt="" />

@@ -5,6 +5,8 @@ import {
   SET_CART,
   SET_COMPARE,
   SET_WISHLIST,
+  REMOVE_CART,
+  SET_FILTERED,
 } from "../type";
 
 const getCategory = () => async (dispatch) => {
@@ -29,11 +31,24 @@ const getProduct = () => async (dispatch) => {
 const setCart = (id) => (dispatch) => {
   dispatch({ type: SET_CART, payload: id });
 };
-
+const removeCart = (id) => (dispatch) => {
+  dispatch({ type: REMOVE_CART, payload: id });
+};
 const setWishlist = (id) => (dispatch) => {
   dispatch({ type: SET_WISHLIST, payload: id });
 };
 const setCompare = (id) => (dispatch) => {
   dispatch({ type: SET_COMPARE, payload: id });
 };
-export { setCart, setCompare, setWishlist, getCategory, getProduct };
+const setFilter = (subid) => (dispatch) => {
+  dispatch({ type: SET_FILTERED, payload: subid });
+};
+export {
+  setCart,
+  setCompare,
+  setWishlist,
+  getCategory,
+  getProduct,
+  removeCart,
+  setFilter,
+};

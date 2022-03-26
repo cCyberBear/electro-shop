@@ -4,14 +4,22 @@
   margin: 10px 2px 0 2px;
   transition: all 0.2s;
   cursor: pointer;
+
   .type {
     color: #768b9e;
     font-size: 0.857em;
   }
   .name {
+    height: 2.57144em;
+    line-height: 1.28572em;
     font-size: 1em;
     color: #0062bd;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .img {
     img {

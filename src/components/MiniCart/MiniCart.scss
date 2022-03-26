@@ -1,0 +1,38 @@
+.MiniCart {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 0 20px;
+  border-bottom: #bbb 1px solid;
+  .img {
+    width: 30%;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+  }
+  .text {
+    width: 70%;
+    p.namee {
+      line-height: 1.5 !important;
+      color: #0062db;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    p.pricee {
+      color: #333;
+      font-size: 0.9em;
+    }
+  }
+  position: relative;
+  span {
+    position: absolute;
+    right: 10px;
+    transform: scaleX(-100%);
+    color: red;
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+  }
+}

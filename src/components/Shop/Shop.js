@@ -8,7 +8,7 @@ const Shop = () => {
     <div className="Shop">
       <Navigation />
       <div className=" container" style={{ display: "flex" }}>
-        <AllCategories />
+        <AllCategories width={"25%"} />
         <AllProducts />
       </div>
     </div>

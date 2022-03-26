@@ -1,12 +1,14 @@
 import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilter } from "../../action/productAction";
 import "./AllCategories.scss";
-const AllCategories = () => {
+const AllCategories = ({ width }) => {
   const category = useSelector((state) => state.productReducer.category);
   const [openKeys, setOpenKeys] = useState([category.map((cat) => cat._id)[1]]);
   const rootSubmenuKeys = [...category.map((cat) => cat._id)];
+  const dispatch = useDispatch();
   const onOpenChange = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -16,7 +18,7 @@ const AllCategories = () => {
     }
   };
   return (
-    <div className="AllCategories">
+    <div className="AllCategories" style={{ width: width }}>
       <Menu mode="inline" openKeys={openKeys} onOpenChange={onOpenChange}>
         {category.map((cat) => {
           if (cat.subCategory.length) {
@@ -24,7 +26,10 @@ const AllCategories = () => {
               <SubMenu key={cat._id} title={cat.name}>
                 {cat.subCategory.map((sub) => {
                   return (
-                    <Menu.Item key={sub._id}>
+                    <Menu.Item
+                      key={sub._id}
+                      onClick={() => dispatch(setFilter(sub._id))}
+                    >
                       {sub.subName}
                       <span style={{ fontSize: "12px", marginLeft: "5px" }}>
                         ({sub.total})
