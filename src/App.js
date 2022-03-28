@@ -50,7 +50,9 @@ const App = () => {
               <Route path="list-all-user" element={<ListUser />}></Route>
             </Route>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/shop" element={<Shop />}></Route>
+            <Route path="shop" element={<Shop />}>
+              <Route path=":id" element={<Shop />}></Route>
+            </Route>
           </Routes>
           <Branding />
           <TopProduct />

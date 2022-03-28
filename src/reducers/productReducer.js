@@ -38,7 +38,7 @@ const productReducer = (state = initialValue, action) => {
       if (idxCart === -1) {
         return {
           ...state,
-          cart: [...state.cart, { ...cart, quantity: 1 }],
+          cart: [...state.cart, { ...cart, quantity: action.quantity }],
         };
       } else {
         return {
@@ -47,7 +47,7 @@ const productReducer = (state = initialValue, action) => {
             ...state.cart.slice(0, idxCart),
             {
               ...state.cart[idxCart],
-              quantity: state.cart[idxCart].quantity + 1,
+              quantity: state.cart[idxCart].quantity + action.quantity,
               ...state.cart.slice(idxCart + 1),
             },
           ],
