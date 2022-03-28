@@ -28,9 +28,11 @@ const getProduct = () => async (dispatch) => {
   dispatch({ type: SET_PRODUCT, payload: products });
 };
 
-const setCart = (id, quantity) => (dispatch) => {
-  dispatch({ type: SET_CART, payload: id, quantity });
-};
+const setCart =
+  (id, quantity = 1) =>
+  (dispatch) => {
+    dispatch({ type: SET_CART, payload: id, quantity });
+  };
 const removeCart = (id) => (dispatch) => {
   dispatch({ type: REMOVE_CART, payload: id });
 };

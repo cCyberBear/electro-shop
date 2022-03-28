@@ -30,7 +30,7 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a>
+            <a onClick={() => navigate("/shop")}>
               <ShoppingOutlined />
               Shop
             </a>

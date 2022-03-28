@@ -13,10 +13,12 @@ const ProductStyle1 = ({ id, name, img, retailPrice, type, forSale }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <div className="ProductStyle1" onClick={() => navigate(`/shop/${id}`)}>
+    <div className="ProductStyle1">
       <span className="type">{type[0].subName} </span>
-      <p className="name">{name}</p>
-      <div className="img">
+      <p className="name" onClick={() => navigate(`/shop/${id}`)}>
+        {name}
+      </p>
+      <div className="img" onClick={() => navigate(`/shop/${id}`)}>
         <img src={img} alt="" />
       </div>
       <div className="sop">
