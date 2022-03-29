@@ -26,7 +26,7 @@ const ToolBar = () => {
 
   const cartItems = useSelector((state) => state.productReducer.cart);
   const category = useSelector((state) => state.productReducer.category);
-  //laod price and amount of items
+
   useEffect(() => {
     setTotalPrice(
       cartItems.reduce((acc, val) => acc + val.retailPrice * val.quantity, 0)
@@ -47,7 +47,8 @@ const ToolBar = () => {
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
-      className="select-after">
+      className="select-after"
+    >
       {category.map((cat) => (
         <Option value={cat._id} key={cat._id}>
           {cat.name}
@@ -72,7 +73,8 @@ const ToolBar = () => {
           style={{
             borderTop: "2px solid #fed700",
             maxHeight: "325px",
-          }}>
+          }}
+        >
           <Menu.Item style={{ margin: "20px" }}>No products in cart</Menu.Item>
         </Menu>
       ) : (
@@ -83,7 +85,8 @@ const ToolBar = () => {
               maxHeight: "325px",
               overflowY: "scroll",
             }}
-            onClick={handleMenuClick}>
+            onClick={handleMenuClick}
+          >
             {cartItems.map((item) => (
               <MiniCart
                 id={item._id}
@@ -124,13 +127,14 @@ const ToolBar = () => {
               onClick={() => {
                 onSearch(input + select);
               }}
-              type="primary">
+              type="primary"
+            >
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
           <div className="userAction">
             <Popover placement="bottom" content={"Compare"} trigger="hover">
-              <RetweetOutlined />
+              <RetweetOutlined onClick={() => navigate("/compare")} />
             </Popover>
             <Popover placement="bottom" content={"Wishlist"} trigger="hover">
               <HeartOutlined />
@@ -144,7 +148,8 @@ const ToolBar = () => {
                 placement="bottomRight"
                 trigger={["click"]}
                 onVisibleChange={handleVisibleChange}
-                visible={state.visible}>
+                visible={state.visible}
+              >
                 <div className="cartt">
                   <p>
                     <ShoppingOutlined />
@@ -161,7 +166,8 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}>
+        visible={visible}
+      >
         <AllCategories width={"100%"} />
       </Drawer>
     </>

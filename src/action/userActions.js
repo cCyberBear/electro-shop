@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  SET_ERROR,
-  SET_LOADING1,
-  SET_LOADING2,
-  SET_USER,
-  AUTHING,
-} from "../type";
+import { SET_ERROR, SET_LOADING1, SET_LOADING2, SET_USER } from "../type";
 import { setAuthToken } from "../helper/axiosHeader";
 
 const register = (data) => async (dispatch) => {

@@ -6,8 +6,11 @@ import {
   SET_FILTERED,
   SET_PRODUCT,
   SET_WISHLIST,
+  PRODUCT_LOADING,
+  REMOVE_COMPARE,
 } from "../type";
 const initialValue = {
+  loading: true,
   category: null,
   products: null,
   wishList: [],
@@ -71,10 +74,7 @@ const productReducer = (state = initialValue, action) => {
           wishList: [...state.wishList, wishList],
         };
       } else {
-        return {
-          ...state,
-          wishList: [...state.wishList],
-        };
+        break;
       }
 
     case SET_COMPARE:
@@ -90,11 +90,13 @@ const productReducer = (state = initialValue, action) => {
           compare: [...state.compare, compare],
         };
       } else {
-        return {
-          ...state,
-          compare: [...state.compare],
-        };
+        break;
       }
+    case REMOVE_COMPARE:
+      return {
+        ...state,
+        compare: state.compare.filter((item) => item._id !== action.payload),
+      };
     case SET_FILTERED:
       return {
         ...state,
@@ -102,6 +104,11 @@ const productReducer = (state = initialValue, action) => {
           const item = pro.subCategory.map((val) => val._id);
           return item.includes(action.payload);
         }),
+      };
+    case PRODUCT_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

@@ -10,5 +10,8 @@ export const AUTHING = "AUTHING";
 export const SET_CART = "SET_CART";
 export const REMOVE_CART = "REMOVE_CART";
 export const SET_WISHLIST = "SET_WISHLIST";
+
 export const SET_COMPARE = "SET_COMPARE";
+export const REMOVE_COMPARE = "REMOVE_COMPARE";
 export const SET_FILTERED = "SET_FILTERED";
+export const PRODUCT_LOADING = "PRODUCT_LOADING";

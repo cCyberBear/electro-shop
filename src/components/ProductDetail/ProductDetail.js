@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.scss";
 import { setCompare, setWishlist, setCart } from "../../action/productAction";
 import { HeartOutlined, RetweetOutlined } from "@ant-design/icons";
+
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productReducer.products);
@@ -53,7 +54,8 @@ const ProductDetail = () => {
           <Button
             size="large"
             type="primary"
-            onClick={() => dispatch(setCart(id, quantity))}>
+            onClick={() => dispatch(setCart(id, quantity))}
+          >
             ADD TO CART
           </Button>
         </div>

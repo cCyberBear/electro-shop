@@ -11,7 +11,7 @@ const AllProducts = () => {
   const filtered = useSelector((state) => state.productReducer.filtered);
   useEffect(() => {
     setPageProduct(products.slice(0, pageSize));
-  }, []);
+  }, [products, pageSize]);
 
   const handleChange = (current, pageSize) => {
     const last = current * pageSize;
