@@ -11,9 +11,10 @@ import { ReactComponent as Svg } from "../../asset/logo.svg";
 import { Input, Select, Button, Popover, Drawer, Dropdown, Menu } from "antd";
 import "./toolBar.scss";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MiniCart from "../MiniCart/MiniCart";
 import AllCategories from "../AllCategories/AllCategories";
+import { setSearch } from "../../action/productAction";
 
 const { Option } = Select;
 const ToolBar = () => {
@@ -27,7 +28,7 @@ const ToolBar = () => {
 
   const cartItems = useSelector((state) => state.productReducer.cart);
   const category = useSelector((state) => state.productReducer.category);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setTotalPrice(
       cartItems.reduce((acc, val) => acc + val.retailPrice * val.quantity, 0)
@@ -45,7 +46,7 @@ const ToolBar = () => {
       searchKey: input,
       categoryId: select,
     };
-    console.log(value);
+    dispatch(setSearch(value, navigate));
   };
 
   const selectAfter = (

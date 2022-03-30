@@ -8,6 +8,7 @@ import {
   SET_WISHLIST,
   PRODUCT_LOADING,
   REMOVE_COMPARE,
+  PRODUCT_SEARCH,
 } from "../type";
 const initialValue = {
   loading: true,
@@ -17,6 +18,7 @@ const initialValue = {
   cart: [],
   compare: [],
   filtered: [],
+  search: [],
 };
 
 const productReducer = (state = initialValue, action) => {
@@ -105,10 +107,27 @@ const productReducer = (state = initialValue, action) => {
           return item.includes(action.payload);
         }),
       };
+    //remove
     case PRODUCT_LOADING:
       return {
         ...state,
         loading: action.payload,
+      };
+    case PRODUCT_SEARCH:
+      const subCategory = state.category.filter(
+        (cat) => cat._id === action.payload.categoryId
+      )[0].subCategory;
+      return {
+        ...state,
+        search: state.products.filter((pro) => {
+          const name = pro.name.includes(action.payload.searchKey);
+          const find = subCategory.filter((val) => {
+            const item = pro.subCategory.map((val) => val._id);
+            return;
+          });
+          console.log("find", find);
+          return true;
+        }),
       };
     default:
       return state;

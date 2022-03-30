@@ -9,6 +9,7 @@ import {
   SET_FILTERED,
   PRODUCT_LOADING,
   REMOVE_COMPARE,
+  PRODUCT_SEARCH,
 } from "../type";
 
 const getAllData = () => async (dispatch) => {
@@ -69,6 +70,10 @@ const setFilter = (subid, navigate) => (dispatch) => {
   dispatch({ type: SET_FILTERED, payload: subid });
   navigate("/shop");
 };
+const setSearch = (data, navigate) => (dispatch) => {
+  dispatch({ type: PRODUCT_SEARCH, payload: data });
+  navigate("/");
+};
 export {
   setCart,
   setCompare,
@@ -77,4 +82,5 @@ export {
   setFilter,
   getAllData,
   removeCompare,
+  setSearch,
 };
