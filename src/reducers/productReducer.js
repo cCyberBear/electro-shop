@@ -114,21 +114,42 @@ const productReducer = (state = initialValue, action) => {
         loading: action.payload,
       };
     case PRODUCT_SEARCH:
-      const subCategory = state.category.filter(
-        (cat) => cat._id === action.payload.categoryId
-      )[0].subCategory;
-      return {
-        ...state,
-        search: state.products.filter((pro) => {
-          const name = pro.name.includes(action.payload.searchKey);
-          const find = subCategory.filter((val) => {
-            const item = pro.subCategory.map((val) => val._id);
-            return;
-          });
-          console.log("find", find);
-          return true;
-        }),
-      };
+      if (
+        action.payload.categoryId === false &&
+        action.payload.searchKey == ""
+      ) {
+        return {
+          ...state,
+          search: [...state.products],
+        };
+      } else {
+        const productCategory = state.products.filter((pro) => {
+          const item = pro.subCategory.map((val) => val._id);
+          const subCategories = state.category.filter(
+            (val) => val._id === action.payload?.categoryId
+          )[0]?.subCategory[0]._id;
+          return item.includes(subCategories);
+        });
+        const productSearched = state.products.filter((value) => {
+          return value.name
+            .toLowerCase()
+            .includes(action.payload?.searchKey.toLowerCase());
+        });
+        const result = productCategory.filter((o) =>
+          productSearched.some(
+            ({ _id, name }) => o._id === _id && o.name === name
+          )
+        );
+        return {
+          ...state,
+          search: result.length
+            ? result
+            : productSearched.length
+            ? productSearched
+            : productCategory,
+        };
+      }
+
     default:
       return state;
   }

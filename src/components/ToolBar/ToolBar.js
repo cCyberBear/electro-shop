@@ -20,7 +20,7 @@ const { Option } = Select;
 const ToolBar = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState(false);
   const [visible, setVisible] = useState(false);
   const [totalPrice, setTotalPrice] = useState("");
   const [amount, setAmount] = useState("");
@@ -46,14 +46,20 @@ const ToolBar = () => {
       searchKey: input,
       categoryId: select,
     };
+    console.log(value);
     dispatch(setSearch(value, navigate));
+    setInput("");
   };
 
   const selectAfter = (
     <Select
-      defaultValue="All categories"
+      defaultValue={select}
       onChange={(value) => setSelect(value)}
-      className="select-after">
+      className="select-after"
+    >
+      <Option value={false} key={0}>
+        All Categories
+      </Option>
       {category.map((cat) => (
         <Option value={cat._id} key={cat._id}>
           {cat.name}
@@ -77,7 +83,8 @@ const ToolBar = () => {
           style={{
             borderTop: "2px solid #fed700",
             maxHeight: "325px",
-          }}>
+          }}
+        >
           <Menu.Item style={{ margin: "20px" }}>No products in cart</Menu.Item>
         </Menu>
       ) : (
@@ -88,7 +95,8 @@ const ToolBar = () => {
               maxHeight: "325px",
               overflowY: "scroll",
             }}
-            onClick={handleMenuClick}>
+            onClick={handleMenuClick}
+          >
             {cartItems.map((item) => (
               <MiniCart
                 id={item._id}
@@ -123,13 +131,14 @@ const ToolBar = () => {
             <Input
               onChange={(e) => setInput(e.target.value)}
               addonAfter={selectAfter}
-              defaultValue={input}
+              value={input}
             />
             <Button
               onClick={() => {
                 onSearch();
               }}
-              type="primary">
+              type="primary"
+            >
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
@@ -149,7 +158,8 @@ const ToolBar = () => {
                 placement="bottomRight"
                 trigger={["click"]}
                 onVisibleChange={handleVisibleChange}
-                visible={state.visible}>
+                visible={state.visible}
+              >
                 <div className="cartt">
                   <p>
                     <ShoppingOutlined />
@@ -166,7 +176,8 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}>
+        visible={visible}
+      >
         <AllCategories width={"100%"} />
       </Drawer>
     </>

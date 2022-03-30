@@ -72,7 +72,7 @@ const setFilter = (subid, navigate) => (dispatch) => {
 };
 const setSearch = (data, navigate) => (dispatch) => {
   dispatch({ type: PRODUCT_SEARCH, payload: data });
-  navigate("/");
+  navigate("/search");
 };
 export {
   setCart,

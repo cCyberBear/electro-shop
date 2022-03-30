@@ -2,7 +2,7 @@
   background-color: #fff;
   padding: 20px;
   margin: 10px 2px 0 2px;
-  transition: all 0.2s;
+  transition: all 0.1s;
   cursor: pointer;
 
   .type {
@@ -75,7 +75,6 @@
     }
     .tool {
       position: relative;
-
       display: flex;
     }
   }
