@@ -23,6 +23,7 @@ const ToolBar = () => {
   const [visible, setVisible] = useState(false);
   const [totalPrice, setTotalPrice] = useState("");
   const [amount, setAmount] = useState("");
+  const [state, setState] = useState({ visible: false });
 
   const cartItems = useSelector((state) => state.productReducer.cart);
   const category = useSelector((state) => state.productReducer.category);
@@ -39,16 +40,19 @@ const ToolBar = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const onSearch = (values) => {
-    console.log(values);
+  const onSearch = () => {
+    const value = {
+      searchKey: input,
+      categoryId: select,
+    };
+    console.log(value);
   };
 
   const selectAfter = (
     <Select
       defaultValue="All categories"
       onChange={(value) => setSelect(value)}
-      className="select-after"
-    >
+      className="select-after">
       {category.map((cat) => (
         <Option value={cat._id} key={cat._id}>
           {cat.name}
@@ -56,7 +60,6 @@ const ToolBar = () => {
       ))}
     </Select>
   );
-  const [state, setState] = useState({ visible: false });
   const handleVisibleChange = (flag) => {
     setState({ visible: flag });
   };
@@ -73,8 +76,7 @@ const ToolBar = () => {
           style={{
             borderTop: "2px solid #fed700",
             maxHeight: "325px",
-          }}
-        >
+          }}>
           <Menu.Item style={{ margin: "20px" }}>No products in cart</Menu.Item>
         </Menu>
       ) : (
@@ -85,8 +87,7 @@ const ToolBar = () => {
               maxHeight: "325px",
               overflowY: "scroll",
             }}
-            onClick={handleMenuClick}
-          >
+            onClick={handleMenuClick}>
             {cartItems.map((item) => (
               <MiniCart
                 id={item._id}
@@ -125,10 +126,9 @@ const ToolBar = () => {
             />
             <Button
               onClick={() => {
-                onSearch(input + select);
+                onSearch();
               }}
-              type="primary"
-            >
+              type="primary">
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
@@ -148,8 +148,7 @@ const ToolBar = () => {
                 placement="bottomRight"
                 trigger={["click"]}
                 onVisibleChange={handleVisibleChange}
-                visible={state.visible}
-              >
+                visible={state.visible}>
                 <div className="cartt">
                   <p>
                     <ShoppingOutlined />
@@ -166,8 +165,7 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}
-      >
+        visible={visible}>
         <AllCategories width={"100%"} />
       </Drawer>
     </>
