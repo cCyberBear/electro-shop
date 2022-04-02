@@ -1,6 +1,7 @@
-import { SET_USER, SET_LOADING1, SET_LOADING2 } from "../type";
+import { SET_USER, SET_LOADING1, SET_LOADING2, SET_CUSTOMER } from "../type";
 const initialValue = {
   user: null,
+  customer: [],
   authing: false,
   loading1: false,
   loading2: false,
@@ -12,6 +13,11 @@ const userReducer = (state = initialValue, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case SET_CUSTOMER:
+      return {
+        ...state,
+        customer: action.payload,
       };
     case SET_LOADING1:
       return {

@@ -1,5 +1,11 @@
 import axios from "axios";
-import { SET_ERROR, SET_LOADING1, SET_LOADING2, SET_USER } from "../type";
+import {
+  SET_CUSTOMER,
+  SET_ERROR,
+  SET_LOADING1,
+  SET_LOADING2,
+  SET_USER,
+} from "../type";
 import { setAuthToken } from "../helper/axiosHeader";
 
 const register = (data) => async (dispatch) => {
@@ -66,6 +72,12 @@ const getCurrentUser = (token) => async (dispatch) => {
     setAuthToken(false);
   }
 };
+const getAllCustomer = () => async (dispatch) => {
+  const res = await axios.get(
+    "https://khuongduy.herokuapp.com/kd/api/v0/user/all-user"
+  );
+  dispatch({ type: SET_CUSTOMER, payload: res.data.users });
+};
 const setLoading = (type, loading) => (dispatch) => {
   dispatch({ type, payload: loading });
 };
@@ -75,4 +87,12 @@ const logOut = (navigate) => (dispatch) => {
   dispatch({ type: SET_USER, payload: null });
   localStorage.removeItem("token");
 };
-export { register, login, setLoading, logOut, changePassword, getCurrentUser };
+export {
+  register,
+  login,
+  setLoading,
+  logOut,
+  changePassword,
+  getCurrentUser,
+  getAllCustomer,
+};
