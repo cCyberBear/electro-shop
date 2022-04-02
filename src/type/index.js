@@ -1,5 +1,6 @@
 export const SET_USER = "SET_USER";
 export const SET_CUSTOMER = "SET_CUSTOMER";
+export const SET_ORDER = "SET_ORDER";
 
 export const SET_LOADING1 = "SET_LOADING1";
 export const SET_LOADING2 = "SET_LOADING2";
