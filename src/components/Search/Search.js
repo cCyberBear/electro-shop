@@ -11,6 +11,7 @@ const Search = () => {
     <div className="Search">
       <Navigation />
       <div className="container">
+        <h1>Search</h1>
         {searchitem.length ? (
           <Row style={{ width: "100%" }}>
             {searchitem.map((pro) => (
@@ -28,7 +29,7 @@ const Search = () => {
         ) : (
           <div className="one">
             <StopOutlined />
-            <h1>404 Not found</h1>
+            <h1>Not found</h1>
           </div>
         )}
       </div>

@@ -19,6 +19,7 @@ import ListUser from "./components/MyAcount/ListUser/ListUser";
 import Shop from "./components/Shop/Shop";
 import Compare from "./components/Compare/Compare";
 import Search from "./components/Search/Search";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="/" element={<Home />}></Route>
             <Route path="compare" element={<Compare />}></Route>
             <Route path="search" element={<Search />}></Route>
+            <Route path="cart" element={<Cart />}></Route>
             <Route path="shop" element={<Shop />}>
               <Route path=":id" element={<Shop />}></Route>
             </Route>
