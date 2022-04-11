@@ -7,6 +7,7 @@ import {
   ShoppingOutlined,
   LogoutOutlined,
   TeamOutlined,
+  PlusCircleOutlined,
 } from "@ant-design/icons";
 
 import "./LoggedManager.scss";
@@ -15,6 +16,7 @@ import Orders from "../MyAcount/Orders/Orders";
 import { logOut } from "../../action/userActions";
 import { useDispatch } from "react-redux";
 import ListUser from "../MyAcount/ListUser/ListUser";
+import AddProduct from "../MyAcount/AddProduct/AddProduct";
 const LoggedManager = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,6 +44,12 @@ const LoggedManager = () => {
             All Oders
           </Menu.Item>
           <Menu.Item
+            onClick={() => navigate("/my-account/add-product")}
+            icon={<PlusCircleOutlined />}
+          >
+            Add Product
+          </Menu.Item>
+          <Menu.Item
             onClick={() => dispatch(logOut(navigate))}
             icon={<LogoutOutlined />}
           >
@@ -52,6 +60,7 @@ const LoggedManager = () => {
           <Route exact path="details" element={<Details />}></Route>
           <Route exact path="orders" element={<Orders />}></Route>
           <Route path="list-all-user" element={<ListUser />}></Route>
+          <Route path="add-product" element={<AddProduct />}></Route>
         </Routes>
       </div>
     </div>

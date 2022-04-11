@@ -14,6 +14,9 @@ const MyAcount = () => {
   const errorMessage = useSelector(
     (state) => state.errorReducer?.error?.message
   );
+  const RegisterMessage = useSelector(
+    (state) => state.errorReducer?.registerError?.message
+  );
   return (
     <div className="MyAcount">
       <Navigation />
@@ -21,6 +24,14 @@ const MyAcount = () => {
         {errorMessage && (
           <Alert
             message={errorMessage}
+            description="Please try again"
+            type="error"
+            closable
+          />
+        )}
+        {RegisterMessage && (
+          <Alert
+            message={JSON.stringify(RegisterMessage)}
             description="Please try again"
             type="error"
             closable

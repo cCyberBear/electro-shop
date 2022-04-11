@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import axios from "axios";
 import {
   SET_CATEGORY,
@@ -10,6 +11,9 @@ import {
   PRODUCT_LOADING,
   REMOVE_COMPARE,
   PRODUCT_SEARCH,
+  SET_CART_REPLACE,
+  ADD_LOADING,
+  SET_ERROR,
 } from "../type";
 
 const getAllData = () => async (dispatch) => {
@@ -29,6 +33,46 @@ const getAllData = () => async (dispatch) => {
   });
   dispatch({ type: SET_PRODUCT, payload: products });
   dispatch({ type: PRODUCT_LOADING, payload: false });
+};
+const createProduct = (data) => async (dispatch) => {
+  const openNotification = (placement = "top") => {
+    notification.info({
+      message: "Succes",
+      description: "Product added successfuly",
+      placement,
+    });
+  };
+  dispatch({ type: ADD_LOADING, payload: true });
+  const formdata = new FormData();
+  formdata.append("name", data.name);
+  formdata.append("retailPrice", data.retailPrice);
+  formdata.append("quantity", data.quantity);
+  formdata.append("subCategory", data.subCategory);
+  formdata.append("description", data.description);
+  formdata.append("image", data.image);
+  try {
+    dispatch({ type: SET_ERROR, payload: null });
+    const newProduct = await axios.post(
+      "https://khuongduy.herokuapp.com/kd/api/v0/product/create",
+      formdata
+    );
+    if (newProduct) {
+      const res = await axios.get(
+        "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
+      );
+      const products = res.data.products.map((pro) => {
+        return {
+          ...pro,
+          img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
+        };
+      });
+      dispatch({ type: SET_PRODUCT, payload: products });
+      openNotification();
+    }
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: error });
+  }
+  dispatch({ type: ADD_LOADING, payload: false });
 };
 // const getCategory = () => async (dispatch) => {
 //   const res = await axios.get(
@@ -53,6 +97,11 @@ const setCart =
   (id, quantity = 1) =>
   (dispatch) => {
     dispatch({ type: SET_CART, payload: id, quantity });
+  };
+const setCartReplace =
+  (id, quantity = 1) =>
+  (dispatch) => {
+    dispatch({ type: SET_CART_REPLACE, payload: id, quantity });
   };
 const removeCart = (id) => (dispatch) => {
   dispatch({ type: REMOVE_CART, payload: id });
@@ -83,4 +132,6 @@ export {
   getAllData,
   removeCompare,
   setSearch,
+  setCartReplace,
+  createProduct,
 };

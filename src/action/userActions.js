@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  REGISTER_ERROR,
   SET_CUSTOMER,
   SET_ERROR,
   SET_LOADING1,
@@ -12,6 +13,8 @@ const register = (data) => async (dispatch) => {
   try {
     dispatch(setLoading(SET_LOADING2, true));
     dispatch({ type: SET_ERROR, payload: null });
+    dispatch({ type: REGISTER_ERROR, payload: null });
+
     const res = await axios.post(
       "https://khuongduy.herokuapp.com/kd/api/v0/user/register",
       data
@@ -21,7 +24,7 @@ const register = (data) => async (dispatch) => {
     localStorage.setItem("token", res.data.token);
     dispatch(setLoading(SET_LOADING2, false));
   } catch (error) {
-    dispatch({ type: SET_ERROR, payload: error.response.data });
+    dispatch({ type: REGISTER_ERROR, payload: error.response.data });
     dispatch(setLoading(SET_LOADING2, false));
   }
 };
@@ -29,6 +32,7 @@ const login = (data) => async (dispatch) => {
   try {
     dispatch(setLoading(SET_LOADING1, true));
     dispatch({ type: SET_ERROR, payload: null });
+    dispatch({ type: REGISTER_ERROR, payload: null });
     const res = await axios.post(
       "https://khuongduy.herokuapp.com/kd/api/v0/user/login",
       data

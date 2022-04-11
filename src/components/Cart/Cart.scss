@@ -1,11 +1,23 @@
 .Cart {
   .container {
+    .flex-pad{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     h1 {
       width: fit-content;
       margin: 50px auto;
     }
-    .partCart {
+    .cartPart {
       display: flex;
+      .ant-table-wrapper {
+        width: 75% !important;
+      }
+      .totalCount{
+        padding:15px;
+        width: 25% !important;
+      }
     }
   }
 }

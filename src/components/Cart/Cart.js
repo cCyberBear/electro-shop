@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Cart.scss";
-import { InputNumber, Table, notification } from "antd";
+import { InputNumber, Table, notification, Divider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { removeCart } from "../../action/productAction";
+import { removeCart, setCartReplace } from "../../action/productAction";
 const Cart = () => {
+  const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.productReducer.cart);
-  console.log(cart);
   const columns = [
     {
       title: "Name",
@@ -31,10 +31,15 @@ const Cart = () => {
       title: "Quantity",
       dataIndex: "quantity",
       key: "id",
-      render: (text) => (
-        <InputNumber min={1} defaultValue={text} onChange={changeAmount} />
+      render: (text, record) => (
+        <InputNumber
+          min={1}
+          defaultValue={text}
+          onChange={(value) => dispatch(setCartReplace(record.id, value))}
+        />
       ),
     },
+    // dispatch(setCart(record.id, value)
     {
       title: "Total",
       dataIndex: ["quantity", "retailPrice"],
@@ -52,9 +57,6 @@ const Cart = () => {
       ),
     },
   ];
-  const changeAmount = (value) => {
-    console.log(value);
-  };
   const openNotificationWithIcon = (type, mes, des) => {
     notification[type]({
       message: mes,
@@ -66,15 +68,34 @@ const Cart = () => {
     openNotificationWithIcon("error", "Removed", "Removed from cart");
   };
 
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
-  };
   return (
     <div className="Cart">
       <div className="container">
         <h1>Cart</h1>
         <div className="cartPart">
-          <Table columns={columns} dataSource={cart} onChange={onChange} />
+          <Table columns={columns} dataSource={cart} />
+          <div className="totalCount">
+            <Divider orientation="left">
+              <h3>Cart totals</h3>
+            </Divider>
+            <div className="flex-pad">
+              <strong>Subtotal</strong>
+              <p>$4,399.00</p>
+            </div>
+            <Divider />
+            <strong>Shipping</strong>
+            <div className="flex-pad">
+              <p>
+                Shipping to <span>CA</span>
+              </p>
+              <p>$4,399.00</p>
+            </div>
+            <Divider />
+            <div className="flex-pad">
+              <strong>Total</strong>
+              <p>$4,399.00</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

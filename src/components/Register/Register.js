@@ -17,7 +17,6 @@ const Register = ({ width }) => {
         name="basic"
         labelCol={{ span: 24 }}
         wrapperCol={{ span: 24 }}
-        initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
       >

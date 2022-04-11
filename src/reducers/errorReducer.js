@@ -1,6 +1,7 @@
-import { SET_ERROR } from "../type";
+import { REGISTER_ERROR, SET_ERROR } from "../type";
 const initialValue = {
   error: null,
+  registerError: null,
 };
 
 const errorReducer = (state = initialValue, action) => {
@@ -9,6 +10,11 @@ const errorReducer = (state = initialValue, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    case REGISTER_ERROR:
+      return {
+        ...state,
+        registerError: action.payload,
       };
     default:
       return state;

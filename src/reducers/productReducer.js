@@ -9,8 +9,11 @@ import {
   PRODUCT_LOADING,
   REMOVE_COMPARE,
   PRODUCT_SEARCH,
+  SET_CART_REPLACE,
+  ADD_LOADING,
 } from "../type";
 const initialValue = {
+  add_loading: false,
   loading: true,
   category: null,
   products: null,
@@ -53,8 +56,33 @@ const productReducer = (state = initialValue, action) => {
             {
               ...state.cart[idxCart],
               quantity: state.cart[idxCart].quantity + action.quantity,
-              ...state.cart.slice(idxCart + 1),
             },
+            ...state.cart.slice(idxCart + 1),
+          ],
+        };
+      }
+    case SET_CART_REPLACE:
+      const cartReplace = state.products.filter(
+        (pro) => pro._id === action.payload
+      )[0];
+      const idxCartReplace = state.cart.findIndex(
+        (cartItem) => cartItem._id === cartReplace._id
+      );
+      if (idxCartReplace === -1) {
+        return {
+          ...state,
+          cart: [...state.cart, { ...cartReplace, quantity: action.quantity }],
+        };
+      } else {
+        return {
+          ...state,
+          cart: [
+            ...state.cart.slice(0, idxCartReplace),
+            {
+              ...state.cart[idxCartReplace],
+              quantity: action.quantity,
+            },
+            ...state.cart.slice(idxCartReplace + 1),
           ],
         };
       }
@@ -113,10 +141,15 @@ const productReducer = (state = initialValue, action) => {
         ...state,
         loading: action.payload,
       };
+    case ADD_LOADING:
+      return {
+        ...state,
+        add_loading: action.payload,
+      };
     case PRODUCT_SEARCH:
       if (
         action.payload.categoryId === false &&
-        action.payload.searchKey == ""
+        action.payload.searchKey === ""
       ) {
         return {
           ...state,
