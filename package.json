@@ -23,12 +23,11 @@
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
-    "serve": "^13.0.2",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.17"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "serve -s build",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
