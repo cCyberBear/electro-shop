@@ -11,6 +11,8 @@ import {
   PRODUCT_SEARCH,
   SET_CART_REPLACE,
   ADD_LOADING,
+  CLEAR_CART,
+  SET_LOADING_ORDER,
 } from "../type";
 const initialValue = {
   add_loading: false,
@@ -22,6 +24,8 @@ const initialValue = {
   compare: [],
   filtered: [],
   search: [],
+  place_order_loading: false,
+  success: false,
 };
 
 const productReducer = (state = initialValue, action) => {
@@ -90,6 +94,11 @@ const productReducer = (state = initialValue, action) => {
       return {
         ...state,
         cart: state.cart.filter((item) => item._id !== action.payload),
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
       };
     case SET_WISHLIST:
       const wishList = state.products.filter(
@@ -182,7 +191,12 @@ const productReducer = (state = initialValue, action) => {
             : productCategory,
         };
       }
-
+    case SET_LOADING_ORDER:
+      return {
+        ...state,
+        place_order_loading: action.payload,
+        success: action.success,
+      };
     default:
       return state;
   }

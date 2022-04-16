@@ -52,20 +52,20 @@ const Special = () => {
         </p>
         <p className="notice">Hurry Up! Offer ends in:</p>
         <div className="timer">
-          <p className="hour">
+          <div className="time">
             {time.hours}
             <div className="text">HOURS</div>
-          </p>
+          </div>
           <span>:</span>
-          <p className="min">
+          <div className="time">
             {time.minutes}
             <div className="text">MINS</div>
-          </p>
+          </div>
           <span>:</span>
-          <p className="sec">
+          <div className="time">
             {time.seconds}
             <div className="text">SECS</div>
-          </p>
+          </div>
         </div>
       </div>
     </div>

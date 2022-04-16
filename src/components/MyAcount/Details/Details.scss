@@ -2,3 +2,14 @@
   width: 70%;
   padding: 20px;
 }
+.ant-modal-body{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.ant-modal-content{
+  height: max-content !important;
+}
+.ant-modal-close-x {
+  display: none !important;
+}

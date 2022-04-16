@@ -14,6 +14,7 @@ import {
   SET_CART_REPLACE,
   ADD_LOADING,
   SET_ERROR,
+  SET_LOADING_ORDER,
 } from "../type";
 
 const getAllData = () => async (dispatch) => {
@@ -123,6 +124,26 @@ const setSearch = (data, navigate) => (dispatch) => {
   dispatch({ type: PRODUCT_SEARCH, payload: data });
   navigate("/search");
 };
+const placeOrder = (data) => async (dispatch) => {
+  dispatch({ type: SET_LOADING_ORDER, payload: true, success: false });
+  dispatch({ type: SET_ERROR, payload: null });
+  const cart = data.map((val) => {
+    return {
+      product: val._id,
+      quantity: val.quantity,
+    };
+  });
+  try {
+    const res = await axios.post(
+      "https://khuongduy.herokuapp.com/kd/api/v0/order/create",
+      cart
+    );
+    dispatch({ type: SET_LOADING_ORDER, payload: false, success: true });
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: "please check quantity of product" });
+    dispatch({ type: SET_LOADING_ORDER, payload: false, success: false });
+  }
+};
 export {
   setCart,
   setCompare,
@@ -134,4 +155,5 @@ export {
   setSearch,
   setCartReplace,
   createProduct,
+  placeOrder,
 };

@@ -46,7 +46,7 @@ const ToolBar = () => {
       searchKey: input,
       categoryId: select,
     };
-    console.log(value);
+
     dispatch(setSearch(value, navigate));
     setInput("");
   };
@@ -55,7 +55,8 @@ const ToolBar = () => {
     <Select
       defaultValue={select}
       onChange={(value) => setSelect(value)}
-      className="select-after">
+      className="select-after"
+    >
       <Option value={false} key={0}>
         All Categories
       </Option>
@@ -82,7 +83,8 @@ const ToolBar = () => {
           style={{
             borderTop: "2px solid #fed700",
             maxHeight: "325px",
-          }}>
+          }}
+        >
           <Menu.Item style={{ margin: "20px" }}>No products in cart</Menu.Item>
         </Menu>
       ) : (
@@ -93,7 +95,8 @@ const ToolBar = () => {
               maxHeight: "325px",
               overflowY: "scroll",
             }}
-            onClick={handleMenuClick}>
+            onClick={handleMenuClick}
+          >
             {cartItems.map((item) => (
               <MiniCart
                 id={item._id}
@@ -106,8 +109,9 @@ const ToolBar = () => {
             ))}
           </Menu>
           <div className="jett">
-            <Button onClick={() => navigate("/cart")}>View cart</Button>
-            <Button type="primary">Check out</Button>
+            <Button style={{ width: "100%" }} onClick={() => navigate("/cart")}>
+              View cart
+            </Button>
           </div>
         </>
       )}
@@ -134,7 +138,8 @@ const ToolBar = () => {
               onClick={() => {
                 onSearch();
               }}
-              type="primary">
+              type="primary"
+            >
               <SearchOutlined style={{ color: "black" }} />
             </Button>
           </div>
@@ -154,7 +159,8 @@ const ToolBar = () => {
                 placement="bottomRight"
                 trigger={["click"]}
                 onVisibleChange={handleVisibleChange}
-                visible={state.visible}>
+                visible={state.visible}
+              >
                 <div className="cartt">
                   <p>
                     <ShoppingOutlined />
@@ -171,7 +177,8 @@ const ToolBar = () => {
         placement={"left"}
         closable={false}
         onClose={onClose}
-        visible={visible}>
+        visible={visible}
+      >
         <AllCategories width={"100%"} />
       </Drawer>
     </>

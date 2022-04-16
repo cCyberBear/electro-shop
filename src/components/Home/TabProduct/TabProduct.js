@@ -16,8 +16,8 @@ const TabProduct = () => {
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Featured" key="1">
           <Row>
-            {newPro3.slice(0, 8).map((pro) => (
-              <Col span={6}>
+            {newPro3.slice(0, 8).map((pro, idx) => (
+              <Col span={6} key={idx}>
                 <ProductStyle1
                   id={pro._id}
                   name={pro.name}
@@ -31,8 +31,8 @@ const TabProduct = () => {
         </TabPane>
         <TabPane tab="On Sale" key="2">
           <Row>
-            {newPro1.slice(0, 8).map((pro) => (
-              <Col span={6}>
+            {newPro1.slice(0, 8).map((pro, idx) => (
+              <Col span={6} key={idx}>
                 <ProductStyle1
                   id={pro._id}
                   name={pro.name}
@@ -46,8 +46,8 @@ const TabProduct = () => {
         </TabPane>
         <TabPane tab="Top Rate" key="3">
           <Row>
-            {newPro2.slice(0, 8).map((pro) => (
-              <Col span={6}>
+            {newPro2.slice(0, 8).map((pro, idx) => (
+              <Col span={6} key={idx}>
                 <ProductStyle1
                   id={pro._id}
                   name={pro.name}

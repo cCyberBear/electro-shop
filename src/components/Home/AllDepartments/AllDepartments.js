@@ -1,21 +1,29 @@
 import React from "react";
 import "./allDepartments.scss";
 import { Menu } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSearch } from "../../../action/productAction";
 const AllDepartments = () => {
+  const category = useSelector((state) => state.productReducer.category);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClick = (id) => {
+    const value = {
+      searchKey: "",
+      categoryId: id,
+    };
+    dispatch(setSearch(value, navigate));
+  };
   return (
     <div className="AllDepartments">
       <Menu>
-        <Menu.Item>Value of the Day</Menu.Item>
-        <Menu.Item>Top 100 Offers</Menu.Item>
-        <Menu.Item>New Arrivals</Menu.Item>
-        <Menu.Item>Computers & Accessories</Menu.Item>
-        <Menu.Item>Cameras, Audio & Video</Menu.Item>
-        <Menu.Item>Mobiles & Tablets</Menu.Item>
-        <Menu.Item>Movies, Music & Video Games</Menu.Item>
-        <Menu.Item>TV & Audio</Menu.Item>
-        <Menu.Item>Watches & Eyewear</Menu.Item>
-        <Menu.Item>Car, Motorbike & Industrial</Menu.Item>
-        <Menu.Item>Accessories</Menu.Item>
+        {category.map((val, idx) => (
+          <Menu.Item key={idx} onClick={() => handleClick(val._id)}>
+            {val.name}
+          </Menu.Item>
+        ))}
       </Menu>
     </div>
   );

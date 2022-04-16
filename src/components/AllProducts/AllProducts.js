@@ -22,8 +22,8 @@ const AllProducts = () => {
     <div className="AllProducts">
       {filtered.length ? (
         <Row>
-          {filtered.map((pro) => (
-            <Col span={6}>
+          {filtered.map((pro, idx) => (
+            <Col span={6} key={idx}>
               <ProductStyle1
                 id={pro._id}
                 name={pro.name}
@@ -37,8 +37,8 @@ const AllProducts = () => {
       ) : (
         <>
           <Row>
-            {pageProduct.map((pro) => (
-              <Col span={6}>
+            {pageProduct.map((pro, idx) => (
+              <Col span={6} key={idx}>
                 <ProductStyle1
                   id={pro._id}
                   name={pro.name}

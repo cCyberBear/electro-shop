@@ -21,6 +21,8 @@ import Compare from "./components/Compare/Compare";
 import Search from "./components/Search/Search";
 import Cart from "./components/Cart/Cart";
 import AddProduct from "./components/MyAcount/AddProduct/AddProduct";
+import Confirmation from "./components/Confirmation/Confirmation";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +52,14 @@ const App = () => {
             <Route path="compare" element={<Compare />}></Route>
             <Route path="search" element={<Search />}></Route>
             <Route path="cart" element={<Cart />}></Route>
+            <Route
+              path="confirm"
+              element={
+                <PrivateRoute>
+                  <Confirmation />
+                </PrivateRoute>
+              }
+            ></Route>
             <Route path="shop" element={<Shop />}>
               <Route path=":id" element={<Shop />}></Route>
             </Route>

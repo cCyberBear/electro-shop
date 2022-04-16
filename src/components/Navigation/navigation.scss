@@ -9,20 +9,13 @@
     li {
       padding: 15px 20px;
       transition: all 0.2s;
+      font-size: 11px;
       cursor: pointer;
       display: flex;
       align-items: center;
       span {
         font-size: 12px;
         margin-left: 5px;
-      }
-      a {
-        color: black;
-        display: block;
-        font-weight: normal;
-        &:hover {
-          color: black;
-        }
       }
       &:hover {
         background-color: #e7c400;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  AUTHING,
   REGISTER_ERROR,
   SET_CUSTOMER,
   SET_ERROR,
@@ -67,6 +68,7 @@ const changePassword = (data) => async (dispatch) => {
 };
 const getCurrentUser = (token) => async (dispatch) => {
   try {
+    dispatch({ type: AUTHING, payload: true });
     setAuthToken(token);
     const res = await axios.get(
       "https://khuongduy.herokuapp.com/kd/api/v0/user/me"
@@ -75,6 +77,14 @@ const getCurrentUser = (token) => async (dispatch) => {
   } catch (error) {
     setAuthToken(false);
   }
+  dispatch({ type: AUTHING, payload: false });
+};
+const updateDeliveryInfo = (data) => async (dispatch) => {
+  const res = await axios.patch(
+    "https://khuongduy.herokuapp.com/kd/api/v0/user/user-shipment",
+    data
+  );
+  dispatch({ type: SET_USER, payload: res.data.user });
 };
 const getAllCustomer = () => async (dispatch) => {
   const res = await axios.get(
@@ -99,4 +109,5 @@ export {
   changePassword,
   getCurrentUser,
   getAllCustomer,
+  updateDeliveryInfo,
 };

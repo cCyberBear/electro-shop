@@ -1,24 +1,36 @@
-import React from 'react'
-import "./navigation.scss"
-import {  DownOutlined} from '@ant-design/icons';
+import React from "react";
+import "./navigation.scss";
+import { DownOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSearch } from "../../action/productAction";
 
 const Navigation = () => {
-  return (
-    <div className='Navigation'>
-        <div className="container">
-            <ul>
-                <li><a>Home</a><DownOutlined /></li>
-                <li><a>TV & Audio</a><DownOutlined /></li>
-                <li><a>Smart Phones</a><DownOutlined /></li>
-                <li><a>Laptops & Desktops</a><DownOutlined /></li>
-                <li><a>Gadgets</a><DownOutlined /></li>
-                <li><a>GPS & Car</a><DownOutlined /></li>
-                <li><a>Cameras & Accessories</a><DownOutlined /></li>
-                <li><a>Movies & Games</a><DownOutlined /></li>
-            </ul>
-        </div>
-    </div>
-  )
-}
+  const category = useSelector((state) => state.productReducer.category);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-export default Navigation
+  const handleClick = (id) => {
+    const value = {
+      searchKey: "",
+      categoryId: id,
+    };
+    dispatch(setSearch(value, navigate));
+  };
+  return (
+    <div className="Navigation">
+      <div className="container">
+        <ul>
+          {category.map((val, idx) => (
+            <li key={idx} onClick={() => handleClick(val._id)}>
+              {val.name}
+              <DownOutlined />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Navigation;

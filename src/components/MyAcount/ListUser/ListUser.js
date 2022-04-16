@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./ListUser.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCustomer } from "../../../action/userActions";
-import { Table, Button } from "antd";
+import { Table } from "antd";
 
 const ListUser = () => {
   const dispatch = useDispatch();

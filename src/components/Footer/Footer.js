@@ -1,9 +1,33 @@
 import { CustomerServiceOutlined } from "@ant-design/icons";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setSearch } from "../../action/productAction";
 import { ReactComponent as Svg } from "../../asset/logo.svg";
+import { BackTop } from "antd";
 import "./footer.scss";
 
 const Footer = () => {
+  const category = useSelector((state) => state.productReducer.category);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClick = (id) => {
+    const value = {
+      searchKey: "",
+      categoryId: id,
+    };
+    dispatch(setSearch(value, navigate));
+    topFunction();
+  };
+  const handleNavigate = (route) => {
+    navigate(route);
+    topFunction();
+  };
+  const topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <>
       <div className="Footer">
@@ -30,13 +54,11 @@ const Footer = () => {
           <div className="linking">
             <ul>
               <p>Find It Fast</p>
-              <li>Laptops & Computers</li>
-              <li>Cameras & Photography</li>
-              <li>Smart Phones & Tablets</li>
-              <li>Video Games & Consoles</li>
-              <li>TV & Audio</li>
-              <li>Gadgets</li>
-              <li>Waterproof Headphones</li>
+              {category.map((val, idx) => (
+                <li key={idx} onClick={() => handleClick(val._id)}>
+                  {val.name}
+                </li>
+              ))}
             </ul>
             <ul>
               <p>Us</p>
@@ -44,16 +66,14 @@ const Footer = () => {
               <li>Contact</li>
               <li>Wishlist</li>
               <li>Compare</li>
-              <li>FAQ</li>
               <li>Store Directory</li>
             </ul>
             <ul>
               <p>Customer Care</p>
-              <li>My Account</li>
+              <li onClick={() => handleNavigate("/my-account")}>My Account</li>
               <li>Track your Order</li>
               <li>Customer Service</li>
               <li>Returns/Exchange</li>
-              <li>FAQs</li>
               <li>Product Support</li>
             </ul>
           </div>

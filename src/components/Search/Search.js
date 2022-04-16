@@ -14,8 +14,8 @@ const Search = () => {
         <h1>Search</h1>
         {searchitem.length ? (
           <Row style={{ width: "100%" }}>
-            {searchitem.map((pro) => (
-              <Col span={6}>
+            {searchitem.map((pro, idx) => (
+              <Col span={6} key={idx}>
                 <ProductStyle1
                   id={pro._id}
                   name={pro.name}

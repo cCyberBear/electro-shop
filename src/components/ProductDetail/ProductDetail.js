@@ -23,8 +23,8 @@ const ProductDetail = () => {
         </div>
         <div className="text">
           <p className="category">
-            {selected.subCategory.map((val) => (
-              <span>{val.subName} </span>
+            {selected.subCategory.map((val, idx) => (
+              <span key={idx}>{val.subName} </span>
             ))}
           </p>
           <p className="name">{selected.name}</p>

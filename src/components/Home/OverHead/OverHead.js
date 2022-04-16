@@ -1,6 +1,6 @@
 import React from "react";
 import "./overhead.scss";
-import { MenuOutlined ,DownOutlined} from "@ant-design/icons";
+import { MenuOutlined, DownOutlined } from "@ant-design/icons";
 
 const OverHead = () => {
   return (
@@ -11,7 +11,7 @@ const OverHead = () => {
           All Departments
         </p>
       </div>
-      <div className="navigator">
+      {/* <div className="navigator">
           <div className="left">
               <ul>
                   <li className="red">
@@ -31,7 +31,7 @@ const OverHead = () => {
           <div className="right">
               <li>Free Shipping on Orders $50+</li>
           </div>
-      </div>
+      </div> */}
     </div>
   );
 };

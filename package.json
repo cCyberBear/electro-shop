@@ -27,7 +27,7 @@
     "yarn": "^1.22.17"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",

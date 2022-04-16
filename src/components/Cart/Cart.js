@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.scss";
-import { InputNumber, Table, notification, Divider } from "antd";
+import { InputNumber, Table, notification, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { removeCart, setCartReplace } from "../../action/productAction";
+import { useNavigate } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 const Cart = () => {
-  const [amount, setAmount] = useState(0);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.productReducer.cart);
+  const cartItems = useSelector((state) => state.productReducer.cart);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    setTotalPrice(
+      cartItems.reduce((acc, val) => acc + val.retailPrice * val.quantity, 0)
+    );
+  }, [cartItems]);
   const columns = [
     {
       title: "Name",
@@ -39,7 +47,6 @@ const Cart = () => {
         />
       ),
     },
-    // dispatch(setCart(record.id, value)
     {
       title: "Total",
       dataIndex: ["quantity", "retailPrice"],
@@ -70,33 +77,22 @@ const Cart = () => {
 
   return (
     <div className="Cart">
+      <Navigation />
       <div className="container">
         <h1>Cart</h1>
-        <div className="cartPart">
-          <Table columns={columns} dataSource={cart} />
-          <div className="totalCount">
-            <Divider orientation="left">
-              <h3>Cart totals</h3>
-            </Divider>
-            <div className="flex-pad">
-              <strong>Subtotal</strong>
-              <p>$4,399.00</p>
-            </div>
-            <Divider />
-            <strong>Shipping</strong>
-            <div className="flex-pad">
-              <p>
-                Shipping to <span>CA</span>
-              </p>
-              <p>$4,399.00</p>
-            </div>
-            <Divider />
-            <div className="flex-pad">
-              <strong>Total</strong>
-              <p>$4,399.00</p>
-            </div>
-          </div>
-        </div>
+        <h2>Total: ${totalPrice}.00 </h2>
+        <Table
+          columns={columns}
+          dataSource={cartItems}
+          pagination={{ position: ["bottomLeft"] }}
+        />
+        <Button
+          size="large"
+          type="primary"
+          onClick={() => navigate("/confirm")}
+        >
+          Check out
+        </Button>
       </div>
     </div>
   );

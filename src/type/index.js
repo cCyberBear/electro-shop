@@ -13,6 +13,8 @@ export const SET_PRODUCT = "SET_PRODUCT";
 export const AUTHING = "AUTHING";
 
 export const SET_CART = "SET_CART";
+export const CLEAR_CART = "CLEAR_CART";
+
 export const SET_CART_REPLACE = "SET_CART_REPLACE";
 
 export const REMOVE_CART = "REMOVE_CART";
@@ -25,3 +27,4 @@ export const PRODUCT_LOADING = "PRODUCT_LOADING";
 export const ADD_LOADING = "ADD_LOADING";
 
 export const PRODUCT_SEARCH = "PRODUCT_SEARCH";
+export const SET_LOADING_ORDER = "SET_LOADING_ORDER";
