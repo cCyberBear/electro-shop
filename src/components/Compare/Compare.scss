@@ -1,2 +1,26 @@
 .Compare {
+    min-height: 90vh;
+    h1 {
+        width: fit-content;
+        margin: 50px auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #dddddd;
+        height: max-content;
+      }
+      td, th {
+        height: 100%;
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+        width: 33.33%;
+      }
+      .empty{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
 }

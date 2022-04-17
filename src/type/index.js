@@ -19,6 +19,7 @@ export const SET_CART_REPLACE = "SET_CART_REPLACE";
 
 export const REMOVE_CART = "REMOVE_CART";
 export const SET_WISHLIST = "SET_WISHLIST";
+export const REMOVE_WISHLIST = "REMOVE_WISHLIST";
 
 export const SET_COMPARE = "SET_COMPARE";
 export const REMOVE_COMPARE = "REMOVE_COMPARE";

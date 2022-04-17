@@ -35,7 +35,7 @@ table {
   border-spacing: 0;
 }
 .container {
-  max-width: 1200px;
+  max-width: 85%;
   margin: 0 auto;
 }
 p {
@@ -64,3 +64,4 @@ body::-webkit-scrollbar-thumb {
     color-stop(0.86, #ffd900)
   );
 }
+

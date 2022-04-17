@@ -15,6 +15,7 @@ import {
   ADD_LOADING,
   SET_ERROR,
   SET_LOADING_ORDER,
+  REMOVE_WISHLIST,
 } from "../type";
 
 const getAllData = () => async (dispatch) => {
@@ -110,6 +111,9 @@ const removeCart = (id) => (dispatch) => {
 const setWishlist = (id) => (dispatch) => {
   dispatch({ type: SET_WISHLIST, payload: id });
 };
+const removeWishList = (id) => (dispatch) => {
+  dispatch({ type: REMOVE_WISHLIST, payload: id });
+};
 const removeCompare = (id) => (dispatch) => {
   dispatch({ type: REMOVE_COMPARE, payload: id });
 };
@@ -156,4 +160,5 @@ export {
   setCartReplace,
   createProduct,
   placeOrder,
+  removeWishList,
 };

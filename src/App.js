@@ -23,6 +23,7 @@ import Cart from "./components/Cart/Cart";
 import AddProduct from "./components/MyAcount/AddProduct/AddProduct";
 import Confirmation from "./components/Confirmation/Confirmation";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import WishList from "./components/WishList/WishList";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const App = () => {
             </Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="compare" element={<Compare />}></Route>
+            <Route path="wish-list" element={<WishList />}></Route>
             <Route path="search" element={<Search />}></Route>
             <Route path="cart" element={<Cart />}></Route>
             <Route

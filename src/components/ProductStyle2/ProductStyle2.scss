@@ -1,0 +1,91 @@
+.ProductStyle2{
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px 2px 0 2px;
+    transition: all 0.1s;
+    width: 100%;
+    cursor: pointer;
+    .sop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .price {
+            font-size: 1.429em;
+            margin: 0;
+        }
+        span {
+          color: #fff;
+          background: #eaeaea;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          font-size: 20px;
+          border-radius: 50%;
+        }
+    }
+    .details{
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        .img{
+            width: 25%;
+            img {
+                width: 100%;
+            }
+        }
+        .text {
+            width: 100%;
+            p {
+                margin: 0;
+            }
+            p.name {
+                height: 2.57144em;
+                line-height: 1.28572em;
+                font-size: 1em;
+                color: #0062bd;
+                font-weight: bold;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+    .tool {
+        display: none;
+        justify-content: space-between;
+        padding-top: 15px;
+        border-top: rgba(60, 64, 67, 0.3) solid 1px;
+        margin-top: 5px;
+        width: 100%;
+        .flex {
+          display: flex;
+          align-items: center;
+        }
+        p {
+          margin: 0;
+        }
+        span {
+          margin-right: 5px;
+        }
+      }
+      &:hover {
+        z-index: 999;
+        border: 1px solide black;
+        position: absolute;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        .sop {
+          span {
+            background: #fed700;
+          }
+        }
+        .tool {
+          position: relative;
+          display: flex;
+        }
+    }
+}

@@ -148,7 +148,7 @@ const ToolBar = () => {
               <RetweetOutlined onClick={() => navigate("/compare")} />
             </Popover>
             <Popover placement="bottom" content={"Wishlist"} trigger="hover">
-              <HeartOutlined />
+              <HeartOutlined onClick={() => navigate("/wish-list")} />
             </Popover>
             <Popover placement="bottom" content={"My Acount"} trigger="hover">
               <UserOutlined onClick={() => navigate("/my-account")} />

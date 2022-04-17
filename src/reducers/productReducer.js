@@ -13,6 +13,7 @@ import {
   ADD_LOADING,
   CLEAR_CART,
   SET_LOADING_ORDER,
+  REMOVE_WISHLIST,
 } from "../type";
 const initialValue = {
   add_loading: false,
@@ -115,7 +116,11 @@ const productReducer = (state = initialValue, action) => {
       } else {
         break;
       }
-
+    case REMOVE_WISHLIST:
+      return {
+        ...state,
+        wishList: state.wishList.filter((item) => item._id !== action.payload),
+      };
     case SET_COMPARE:
       const compare = state.products.filter(
         (pro) => pro._id === action.payload
