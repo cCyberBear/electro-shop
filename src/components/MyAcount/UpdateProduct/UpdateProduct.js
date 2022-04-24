@@ -9,6 +9,7 @@ const UpdateProduct = () => {
     name: null,
     retailPrice: null,
     quantity: null,
+    description: null,
   });
   const products = useSelector((state) => state.productReducer.products);
   const columns = [
@@ -44,6 +45,7 @@ const UpdateProduct = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
   return (
     <div className="UpdateProduct">
       <Modal
@@ -51,18 +53,17 @@ const UpdateProduct = () => {
         title="Details"
         visible={isModalVisible}
         footer={[
-          <Button type="primary" key="delete">
-            Delete
-          </Button>,
-          <Button type="primary" key="save">
-            Save
-          </Button>,
           <Button key="back" onClick={handleCancel}>
-            Cancle
+            Cancel
           </Button>,
-        ]}>
+        ]}
+      >
         <div className="modal-content">
-          <AddProduct widthSize={"100%"} data={currentView} />
+          <AddProduct
+            widthSize={"100%"}
+            data={currentView}
+            handleCancel={handleCancel}
+          />
         </div>
       </Modal>
       {products.length ? (

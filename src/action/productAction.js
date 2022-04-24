@@ -18,6 +18,13 @@ import {
   REMOVE_WISHLIST,
 } from "../type";
 
+const openNotification = (message, description) => {
+  notification.info({
+    message,
+    description,
+    placement: "top",
+  });
+};
 const getAllData = () => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING, payload: true });
   const resCate = await axios.get(
@@ -37,13 +44,6 @@ const getAllData = () => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING, payload: false });
 };
 const createProduct = (data) => async (dispatch) => {
-  const openNotification = (placement = "top") => {
-    notification.info({
-      message: "Succes",
-      description: "Product added successfuly",
-      placement,
-    });
-  };
   dispatch({ type: ADD_LOADING, payload: true });
   const formdata = new FormData();
   formdata.append("name", data.name);
@@ -69,32 +69,60 @@ const createProduct = (data) => async (dispatch) => {
         };
       });
       dispatch({ type: SET_PRODUCT, payload: products });
-      openNotification();
+      openNotification("Succes", "Product added successfuly");
     }
   } catch (error) {
     dispatch({ type: SET_ERROR, payload: error });
   }
   dispatch({ type: ADD_LOADING, payload: false });
 };
-// const getCategory = () => async (dispatch) => {
-//   const res = await axios.get(
-//     "https://khuongduy.herokuapp.com/kd/api/v0/category/all-category"
-//   );
-//   dispatch({ type: SET_CATEGORY, payload: res.data.data });
-// };
-// const getProduct = () => async (dispatch) => {
-//   const res = await axios.get(
-//     "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
-//   );
-//   const products = res.data.products.map((pro) => {
-//     return {
-//       ...pro,
-//       img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
-//     };
-//   });
-//   dispatch({ type: SET_PRODUCT, payload: products });
-// };
-
+const updateProduct = (id, data) => async (dispatch) => {
+  dispatch({ type: ADD_LOADING, payload: true });
+  const formdata = new FormData();
+  formdata.append("name", data.name);
+  formdata.append("retailPrice", data.retailPrice);
+  formdata.append("quantity", data.quantity);
+  formdata.append("subCategory", data.subCategory);
+  formdata.append("description", data.description);
+  formdata.append("image", data.image);
+  try {
+    dispatch({ type: SET_ERROR, payload: null });
+    const res = await axios.post(
+      `https://khuongduy.herokuapp.com/kd/api/v0/product/update/${id}`,
+      formdata
+    );
+    const products = res.data.data.map((pro) => {
+      return {
+        ...pro,
+        img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
+      };
+    });
+    dispatch({ type: SET_PRODUCT, payload: products });
+    openNotification("Succes", "Product updated successfuly");
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: error });
+  }
+  dispatch({ type: ADD_LOADING, payload: false });
+};
+const deleteProduct = (id) => async (dispatch) => {
+  dispatch({ type: ADD_LOADING, payload: true });
+  try {
+    const res = await axios.delete(
+      `https://khuongduy.herokuapp.com/kd/api/v0/product/delete/${id}`
+    );
+    const products = res.data.data.map((pro) => {
+      return {
+        ...pro,
+        img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
+      };
+    });
+    dispatch({ type: SET_PRODUCT, payload: products });
+    openNotification("Succes", "Product deleted successfuly");
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: error });
+  }
+  dispatch({ type: ADD_LOADING, payload: false });
+};
 const setCart =
   (id, quantity = 1) =>
   (dispatch) => {
@@ -161,4 +189,6 @@ export {
   createProduct,
   placeOrder,
   removeWishList,
+  updateProduct,
+  deleteProduct,
 };

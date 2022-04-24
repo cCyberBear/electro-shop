@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddProduct.scss";
+import ImgCrop from "antd-img-crop";
 import {
   Form,
   Input,
@@ -10,14 +11,31 @@ import {
   Row,
   Col,
 } from "antd";
-import { BarcodeOutlined, UploadOutlined } from "@ant-design/icons";
+import { BarcodeOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../../../action/productAction";
+import {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../../../action/productAction";
 import { FadeLoader } from "react-spinners";
-const AddProduct = ({ widthSize, data }) => {
+const AddProduct = ({ widthSize, data, handleCancel }) => {
   const category = useSelector((state) => state.productReducer.category);
   const loading = useSelector((state) => state.productReducer.add_loading);
   const [selectedFileList, setSelectedFileList] = useState([]);
+  useEffect(() => {
+    if (data) {
+      setSelectedFileList([
+        {
+          uid: "-1",
+          name: "image.png",
+          status: "done",
+          url: data.img,
+        },
+      ]);
+    }
+  }, [data]);
+
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const layout = {
@@ -38,7 +56,7 @@ const AddProduct = ({ widthSize, data }) => {
   const onFinish = (values) => {
     const data = {
       ...values,
-      image: selectedFileList[0],
+      image: selectedFileList[0].originFileObj,
       subCategory: JSON.stringify(values.subCategory),
     };
     dispatch(createProduct(data));
@@ -50,10 +68,45 @@ const AddProduct = ({ widthSize, data }) => {
       onSuccess("ok");
     }, 2000);
   };
-  const handleUpload = (uploads) => {
-    setSelectedFileList([uploads.file.originFileObj]);
+  const handleUpload = (newFileList) => {
+    setSelectedFileList(newFileList.fileList);
   };
-  console.log(data);
+  const onPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
+  };
+  const handleSave = (id) => {
+    const formdata = form.getFieldValue();
+    const data = {
+      ...formdata,
+      image: selectedFileList[0].originFileObj,
+      subCategory: JSON.stringify(formdata.subCategory),
+    };
+    dispatch(updateProduct(id, data));
+    setTimeout(() => {
+      if (!loading) {
+        handleCancel();
+      }
+    }, 1000);
+  };
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id));
+    setTimeout(() => {
+      if (!loading) {
+        handleCancel();
+      }
+    }, 1000);
+  };
   return (
     <div className="AddProduct" style={{ width: widthSize }}>
       {loading ? (
@@ -76,41 +129,54 @@ const AddProduct = ({ widthSize, data }) => {
             },
             {
               name: ["quantity"],
-              value: data ? data.quatity : "",
-            },
-            {
-              name: ["quantity"],
               value: data ? data.quantity : "",
             },
             {
               name: ["subCategory"],
-              value: data ? data.subCategory : "",
+              value: data ? [...data.subCategory.map((val) => val._id)] : "",
             },
             {
               name: ["description"],
               value: data ? data.description : "",
             },
-          ]}>
+          ]}
+        >
+          <Form.Item name="image" label="Image">
+            <ImgCrop rotate>
+              <Upload
+                fileList={selectedFileList}
+                listType="picture-card"
+                onChange={handleUpload}
+                customRequest={dummyRequest}
+                onPreview={onPreview}
+              >
+                {selectedFileList.length < 1 && "+ Upload"}
+              </Upload>
+            </ImgCrop>
+          </Form.Item>
           <Form.Item name="name" label="Name" rules={[{ required: true }]}>
             <Input value={data ? data.name : ""} />
           </Form.Item>
           <Form.Item
             name="retailPrice"
             label="Price"
-            rules={[{ type: "number", min: 1, required: true }]}>
+            rules={[{ type: "number", min: 1, required: true }]}
+          >
             <InputNumber addonAfter="$" />
           </Form.Item>
           <Form.Item
             name="quantity"
             label="Quantity"
-            rules={[{ type: "number", min: 1, required: true }]}>
+            rules={[{ type: "number", min: 1, required: true }]}
+          >
             <InputNumber addonAfter={<BarcodeOutlined />} />
           </Form.Item>
           <Form.Item
             name="subCategory"
             label="Category"
-            rules={[{ required: true }]}>
-            <Checkbox.Group style={{ width: "100%" }} value={data.subCategory}>
+            rules={[{ required: true }]}
+          >
+            <Checkbox.Group style={{ width: "100%" }}>
               <Row>
                 {category.map((val) => {
                   const subCategory = val.subCategory;
@@ -126,19 +192,34 @@ const AddProduct = ({ widthSize, data }) => {
           <Form.Item name="description" label="Description">
             <Input.TextArea />
           </Form.Item>
-          <Form.Item name="image" label="Image">
-            <Upload
-              fileList={selectedFileList}
-              onChange={handleUpload}
-              customRequest={dummyRequest}>
-              <Button icon={<UploadOutlined />}>Upload</Button>
-            </Upload>
-          </Form.Item>
-          {!data && (
+
+          {!data ? (
             <Form.Item>
               <Button type="primary" htmlType="submit">
                 Add Product
               </Button>
+            </Form.Item>
+          ) : (
+            <Form.Item>
+              <div className="grpp-btn">
+                <Button
+                  htmlType="button"
+                  size="large"
+                  type="primary"
+                  key="save"
+                  onClick={() => handleSave(data._id)}
+                >
+                  Save
+                </Button>
+                <Button
+                  onClick={() => handleDelete(data._id)}
+                  size="large"
+                  type="primary"
+                  key="delete"
+                >
+                  Delete
+                </Button>
+              </div>
             </Form.Item>
           )}
         </Form>

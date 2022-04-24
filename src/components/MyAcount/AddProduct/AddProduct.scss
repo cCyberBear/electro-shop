@@ -3,6 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .grpp-btn{
+    display: flex; 
+    justify-content: space-between;
+    width: 100%;
+    button{
+      display: inline-block;
+    }
+  }
 }
 .ant-upload-list-item-card-actions {
   display: none !important;
