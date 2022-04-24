@@ -28,9 +28,16 @@ const ProductDetail = () => {
             ))}
           </p>
           <p className="name">{selected.name}</p>
-          <p className="avail">
-            Availability: <span> {selected.quantity} in instock</span>
-          </p>
+          {selected.quantity ? (
+            <p className="avail">
+              Availability: <span> {selected.quantity} in instock</span>
+            </p>
+          ) : (
+            <p className="notavail">
+              Availability: <span> out of instock</span>
+            </p>
+          )}
+
           <div className="divider"></div>
           <div className="tool">
             <div className="flex" onClick={() => dispatch(setWishlist(id))}>
