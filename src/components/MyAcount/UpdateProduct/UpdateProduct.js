@@ -68,6 +68,7 @@ const UpdateProduct = () => {
       </Modal>
       {products.length ? (
         <Table
+          bordered
           style={{ width: "100%" }}
           columns={columns}
           dataSource={products}

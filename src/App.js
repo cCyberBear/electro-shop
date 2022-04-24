@@ -8,7 +8,6 @@ import MyAcount from "./components/MyAcount/MyAcount";
 import Header from "./components/Header/Header";
 import ToolBar from "./components/ToolBar/ToolBar";
 import Footer from "./components/Footer/Footer";
-import Branding from "./components/Branding/Branding";
 import TopProduct from "./components/TopProduct/TopProduct";
 import SignUpMail from "./components/SignupByMail/SignUpMail";
 import Home from "./components/Home/Home";
@@ -62,12 +61,12 @@ const App = () => {
                 <PrivateRoute>
                   <Confirmation />
                 </PrivateRoute>
-              }></Route>
+              }
+            ></Route>
             <Route path="shop" element={<Shop />}>
               <Route path=":id" element={<Shop />}></Route>
             </Route>
           </Routes>
-          <Branding />
           <TopProduct />
           <SignUpMail />
           <Footer />

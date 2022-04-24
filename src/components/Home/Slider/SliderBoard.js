@@ -16,10 +16,7 @@ const SliderBoard = () => {
             <p className="price">$799.99</p>
             <button onClick={() => navigate("/shop")}>Start Buying</button>
           </div>
-          <img
-            src="https://electro.madrasthemes.com/wp-content/uploads/2021/03/Smartwatchess.png"
-            alt=""
-          />
+          <img src="https://khuongduy.herokuapp.com/image/1-2.png" alt="" />
         </div>
         <div className="item2">
           <div className="text">
@@ -30,10 +27,7 @@ const SliderBoard = () => {
             </h1>
             <button onClick={() => navigate("/shop")}>Start Buying</button>
           </div>
-          <img
-            src="https://electro.madrasthemes.com/wp-content/uploads/2019/01/Sounddevice.png"
-            alt=""
-          />
+          <img src="https://khuongduy.herokuapp.com/image/1-3.png" alt="" />
         </div>
         <div className="item2">
           <div className="text">
@@ -44,10 +38,7 @@ const SliderBoard = () => {
             </h1>
             <button onClick={() => navigate("/shop")}>Start Buying</button>
           </div>
-          <img
-            src="https://electro.madrasthemes.com/wp-content/uploads/2019/01/Smartphones.png"
-            alt=""
-          />
+          <img src="https://khuongduy.herokuapp.com/image/1-4.png" alt="" />
         </div>
       </Carousel>
     </div>

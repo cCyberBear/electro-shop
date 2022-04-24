@@ -34,7 +34,7 @@ const ProductDetail = () => {
             </p>
           ) : (
             <p className="notavail">
-              Availability: <span> out of instock</span>
+              Availability: <span> out of stock</span>
             </p>
           )}
 

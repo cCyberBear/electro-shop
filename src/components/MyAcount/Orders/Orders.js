@@ -131,11 +131,13 @@ const Orders = () => {
         />
       ) : (
         <Table
+          bordered
           rowKey={(record) => record._id}
           expandable={{
             expandedRowRender: (record) => {
               return (
                 <Table
+                  bordered
                   pagination={false}
                   dataSource={record.items}
                   columns={columnss}

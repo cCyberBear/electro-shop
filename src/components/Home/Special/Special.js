@@ -33,7 +33,7 @@ const Special = () => {
         </div>
         <div className="img">
           <img
-            src="https://electro.madrasthemes.com/wp-content/uploads/2016/03/consal-300x300.png"
+            src="https://khuongduy.herokuapp.com/uploads/image-1649690426830.png"
             alt=""
           />
         </div>

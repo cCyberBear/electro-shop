@@ -28,7 +28,7 @@ const ListUser = () => {
   return (
     <div className="ListUser">
       {customer.length ? (
-        <Table columns={columns} dataSource={customer} />
+        <Table columns={columns} dataSource={customer} bordered />
       ) : (
         <Alert
           style={{ width: "100%" }}
