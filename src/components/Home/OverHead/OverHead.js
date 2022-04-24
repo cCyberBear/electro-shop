@@ -1,6 +1,6 @@
 import React from "react";
 import "./overhead.scss";
-import { MenuOutlined, DownOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 
 const OverHead = () => {
   return (

@@ -138,7 +138,7 @@ const placeOrder = (data) => async (dispatch) => {
     };
   });
   try {
-    const res = await axios.post(
+    await axios.post(
       "https://khuongduy.herokuapp.com/kd/api/v0/order/create",
       cart
     );

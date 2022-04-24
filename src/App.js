@@ -24,6 +24,7 @@ import AddProduct from "./components/MyAcount/AddProduct/AddProduct";
 import Confirmation from "./components/Confirmation/Confirmation";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import WishList from "./components/WishList/WishList";
+import UpdateProduct from "./components/MyAcount/UpdateProduct/UpdateProduct";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const App = () => {
               <Route path="orders" element={<Orders />}></Route>
               <Route path="list-all-user" element={<ListUser />}></Route>
               <Route path="add-product" element={<AddProduct />}></Route>
+              <Route path="update-product" element={<UpdateProduct />}></Route>
             </Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="compare" element={<Compare />}></Route>
@@ -60,8 +62,7 @@ const App = () => {
                 <PrivateRoute>
                   <Confirmation />
                 </PrivateRoute>
-              }
-            ></Route>
+              }></Route>
             <Route path="shop" element={<Shop />}>
               <Route path=":id" element={<Shop />}></Route>
             </Route>

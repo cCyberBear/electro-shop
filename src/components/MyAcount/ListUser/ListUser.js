@@ -1,5 +1,5 @@
 import { Alert } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./ListUser.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCustomer } from "../../../action/userActions";

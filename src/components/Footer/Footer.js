@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSearch } from "../../action/productAction";
 import { ReactComponent as Svg } from "../../asset/logo.svg";
-import { BackTop } from "antd";
 import "./footer.scss";
 
 const Footer = () => {

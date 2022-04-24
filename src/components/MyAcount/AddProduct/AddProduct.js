@@ -14,10 +14,9 @@ import { BarcodeOutlined, UploadOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../../action/productAction";
 import { FadeLoader } from "react-spinners";
-const AddProduct = () => {
+const AddProduct = ({ widthSize, data }) => {
   const category = useSelector((state) => state.productReducer.category);
   const loading = useSelector((state) => state.productReducer.add_loading);
-
   const [selectedFileList, setSelectedFileList] = useState([]);
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -54,8 +53,9 @@ const AddProduct = () => {
   const handleUpload = (uploads) => {
     setSelectedFileList([uploads.file.originFileObj]);
   };
+  console.log(data);
   return (
-    <div className="AddProduct">
+    <div className="AddProduct" style={{ width: widthSize }}>
       {loading ? (
         <FadeLoader color="#fed700" loading={loading} size={20} />
       ) : (
@@ -65,30 +65,52 @@ const AddProduct = () => {
           name="nest-messages"
           onFinish={onFinish}
           validateMessages={validateMessages}
-        >
+          fields={[
+            {
+              name: ["name"],
+              value: data ? data.name : "",
+            },
+            {
+              name: ["retailPrice"],
+              value: data ? data.retailPrice : "",
+            },
+            {
+              name: ["quantity"],
+              value: data ? data.quatity : "",
+            },
+            {
+              name: ["quantity"],
+              value: data ? data.quantity : "",
+            },
+            {
+              name: ["subCategory"],
+              value: data ? data.subCategory : "",
+            },
+            {
+              name: ["description"],
+              value: data ? data.description : "",
+            },
+          ]}>
           <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-            <Input />
+            <Input value={data ? data.name : ""} />
           </Form.Item>
           <Form.Item
             name="retailPrice"
             label="Price"
-            rules={[{ type: "number", min: 1, required: true }]}
-          >
+            rules={[{ type: "number", min: 1, required: true }]}>
             <InputNumber addonAfter="$" />
           </Form.Item>
           <Form.Item
             name="quantity"
             label="Quantity"
-            rules={[{ type: "number", min: 1, required: true }]}
-          >
+            rules={[{ type: "number", min: 1, required: true }]}>
             <InputNumber addonAfter={<BarcodeOutlined />} />
           </Form.Item>
           <Form.Item
             name="subCategory"
             label="Category"
-            rules={[{ required: true }]}
-          >
-            <Checkbox.Group style={{ width: "100%" }}>
+            rules={[{ required: true }]}>
+            <Checkbox.Group style={{ width: "100%" }} value={data.subCategory}>
               <Row>
                 {category.map((val) => {
                   const subCategory = val.subCategory;
@@ -108,16 +130,17 @@ const AddProduct = () => {
             <Upload
               fileList={selectedFileList}
               onChange={handleUpload}
-              customRequest={dummyRequest}
-            >
+              customRequest={dummyRequest}>
               <Button icon={<UploadOutlined />}>Upload</Button>
             </Upload>
           </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Add Product
-            </Button>
-          </Form.Item>
+          {!data && (
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Add Product
+              </Button>
+            </Form.Item>
+          )}
         </Form>
       )}
     </div>

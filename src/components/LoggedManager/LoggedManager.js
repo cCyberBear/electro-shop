@@ -8,6 +8,7 @@ import {
   LogoutOutlined,
   TeamOutlined,
   PlusCircleOutlined,
+  MonitorOutlined,
 } from "@ant-design/icons";
 
 import "./LoggedManager.scss";
@@ -17,6 +18,7 @@ import { logOut } from "../../action/userActions";
 import { useDispatch } from "react-redux";
 import ListUser from "../MyAcount/ListUser/ListUser";
 import AddProduct from "../MyAcount/AddProduct/AddProduct";
+import UpdateProduct from "../MyAcount/UpdateProduct/UpdateProduct";
 const LoggedManager = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,32 +29,32 @@ const LoggedManager = () => {
         <Menu style={{ width: "30%" }}>
           <Menu.Item
             onClick={() => navigate("/my-account/details")}
-            icon={<UserOutlined />}
-          >
+            icon={<UserOutlined />}>
             Account details
           </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/my-account/list-all-user")}
-            icon={<TeamOutlined />}
-          >
+            icon={<TeamOutlined />}>
             All Users
           </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/my-account/orders")}
-            icon={<ShoppingOutlined />}
-          >
+            icon={<ShoppingOutlined />}>
             All Oders
           </Menu.Item>
           <Menu.Item
             onClick={() => navigate("/my-account/add-product")}
-            icon={<PlusCircleOutlined />}
-          >
+            icon={<PlusCircleOutlined />}>
             Add Product
           </Menu.Item>
           <Menu.Item
+            onClick={() => navigate("/my-account/update-product")}
+            icon={<MonitorOutlined />}>
+            Update Product
+          </Menu.Item>
+          <Menu.Item
             onClick={() => dispatch(logOut(navigate))}
-            icon={<LogoutOutlined />}
-          >
+            icon={<LogoutOutlined />}>
             Logout
           </Menu.Item>
         </Menu>
@@ -60,7 +62,10 @@ const LoggedManager = () => {
           <Route exact path="details" element={<Details />}></Route>
           <Route exact path="orders" element={<Orders />}></Route>
           <Route path="list-all-user" element={<ListUser />}></Route>
-          <Route path="add-product" element={<AddProduct />}></Route>
+          <Route
+            path="add-product"
+            element={<AddProduct widthSize={"75%"} />}></Route>
+          <Route path="update-product" element={<UpdateProduct />}></Route>
         </Routes>
       </div>
     </div>
