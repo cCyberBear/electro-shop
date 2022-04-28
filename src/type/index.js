@@ -10,6 +10,7 @@ export const REGISTER_ERROR = "REGISTER_ERROR";
 
 export const SET_CATEGORY = "SET_CATEGORY";
 export const SET_PRODUCT = "SET_PRODUCT";
+export const SET_TOP_PRODUCT = "SET_TOP_PRODUCT";
 export const AUTHING = "AUTHING";
 
 export const SET_CART = "SET_CART";

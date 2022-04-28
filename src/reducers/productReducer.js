@@ -14,12 +14,14 @@ import {
   CLEAR_CART,
   SET_LOADING_ORDER,
   REMOVE_WISHLIST,
+  SET_TOP_PRODUCT,
 } from "../type";
 const initialValue = {
   add_loading: false,
   loading: true,
-  category: null,
-  products: null,
+  category: [],
+  products: [],
+  topProduct: [],
   wishList: [],
   cart: [],
   compare: [],
@@ -40,6 +42,11 @@ const productReducer = (state = initialValue, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case SET_TOP_PRODUCT:
+      return {
+        ...state,
+        topProduct: action.payload,
       };
     case SET_CART:
       const cart = state.products.filter(

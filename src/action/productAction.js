@@ -16,6 +16,7 @@ import {
   SET_ERROR,
   SET_LOADING_ORDER,
   REMOVE_WISHLIST,
+  SET_TOP_PRODUCT,
 } from "../type";
 
 const openNotification = (message, description) => {
@@ -24,6 +25,12 @@ const openNotification = (message, description) => {
     description,
     placement: "top",
   });
+};
+const validData = (data) => {
+  return data.map((pro) => ({
+    ...pro,
+    img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
+  }));
 };
 const getAllData = () => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING, payload: true });
@@ -34,13 +41,14 @@ const getAllData = () => async (dispatch) => {
   const res = await axios.get(
     "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
   );
-  const products = res.data.products.map((pro) => {
-    return {
-      ...pro,
-      img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
-    };
-  });
+  const restop = await axios.get(
+    "https://khuongduy.herokuapp.com/kd/api/v0/order/get-top"
+  );
+  const products = validData(res.data.products);
+  const topProduct = validData(restop.data.data);
+
   dispatch({ type: SET_PRODUCT, payload: products });
+  dispatch({ type: SET_TOP_PRODUCT, payload: topProduct });
   dispatch({ type: PRODUCT_LOADING, payload: false });
 };
 const createProduct = (data) => async (dispatch) => {
@@ -62,12 +70,7 @@ const createProduct = (data) => async (dispatch) => {
       const res = await axios.get(
         "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
       );
-      const products = res.data.products.map((pro) => {
-        return {
-          ...pro,
-          img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
-        };
-      });
+      const products = validData(res.data.products);
       dispatch({ type: SET_PRODUCT, payload: products });
       openNotification("Succes", "Product added successfuly");
     }
@@ -91,12 +94,7 @@ const updateProduct = (id, data) => async (dispatch) => {
       `https://khuongduy.herokuapp.com/kd/api/v0/product/update/${id}`,
       formdata
     );
-    const products = res.data.data.map((pro) => {
-      return {
-        ...pro,
-        img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
-      };
-    });
+    const products = validData(res.data.data);
     dispatch({ type: SET_PRODUCT, payload: products });
     openNotification("Succes", "Product updated successfuly");
   } catch (error) {
@@ -110,12 +108,7 @@ const deleteProduct = (id) => async (dispatch) => {
     const res = await axios.delete(
       `https://khuongduy.herokuapp.com/kd/api/v0/product/delete/${id}`
     );
-    const products = res.data.data.map((pro) => {
-      return {
-        ...pro,
-        img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
-      };
-    });
+    const products = validData(res.data.data);
     dispatch({ type: SET_PRODUCT, payload: products });
     openNotification("Succes", "Product deleted successfuly");
   } catch (error) {
