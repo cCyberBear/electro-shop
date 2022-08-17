@@ -1,9 +1,9 @@
-import React from "react";
-import "./allDepartments.scss";
 import { Menu } from "antd";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSearch } from "../../../action/productAction";
+import "./allDepartments.scss";
 const AllDepartments = () => {
   const category = useSelector((state) => state.productReducer.category);
   const navigate = useNavigate();

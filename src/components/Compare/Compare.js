@@ -1,5 +1,5 @@
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { Button, notification, Table } from "antd";
+import { Button, notification } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

@@ -1,12 +1,12 @@
-import React from "react";
-import "./header.scss";
 import {
   AimOutlined,
   InboxOutlined,
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./header.scss";
 
 const Header = () => {
   const navigate = useNavigate();

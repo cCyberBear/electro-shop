@@ -1,7 +1,7 @@
+import { PlayCircleOutlined } from "@ant-design/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./dirShop.scss";
-import { PlayCircleOutlined } from "@ant-design/icons";
 const DirShop = () => {
   const navigate = useNavigate();
   return (

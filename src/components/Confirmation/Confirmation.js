@@ -1,14 +1,14 @@
+import { CheckCircleTwoTone } from "@ant-design/icons";
+import { Button, Divider, Form, Input, Modal, notification } from "antd";
 import React, { useEffect, useState } from "react";
-import "./Confirmation.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Button, Divider, Form, Input, Modal, notification } from "antd";
 import { HashLoader } from "react-spinners";
-import { updateDeliveryInfo } from "../../action/userActions";
-import { CheckCircleTwoTone } from "@ant-design/icons";
-import Navigation from "../Navigation/Navigation";
 import { placeOrder } from "../../action/productAction";
+import { updateDeliveryInfo } from "../../action/userActions";
 import { CLEAR_CART, SET_ERROR } from "../../type";
+import Navigation from "../Navigation/Navigation";
+import "./Confirmation.scss";
 const Confirmation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

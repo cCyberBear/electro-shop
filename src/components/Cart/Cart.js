@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./Cart.scss";
-import { InputNumber, Table, notification, Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
 import { CloseCircleOutlined } from "@ant-design/icons";
-import { removeCart, setCartReplace } from "../../action/productAction";
+import { Button, InputNumber, notification, Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeCart, setCartReplace } from "../../action/productAction";
 import Navigation from "../Navigation/Navigation";
+import "./Cart.scss";
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

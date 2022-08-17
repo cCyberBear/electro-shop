@@ -33,7 +33,8 @@ const AllCategories = ({ width }) => {
                   return (
                     <Menu.Item
                       key={sub._id}
-                      onClick={() => dispatch(setFilter(sub._id, navigate))}>
+                      onClick={() => dispatch(setFilter(sub._id, navigate))}
+                    >
                       {sub.subName}
                       <span style={{ fontSize: "12px", marginLeft: "5px" }}>
                         ({sub.total})
