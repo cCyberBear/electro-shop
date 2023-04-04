@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./UpdateProduct.scss";
+import { Alert, Button, Modal, Table } from "antd";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Table, Alert, Button, Modal } from "antd";
 import AddProduct from "../AddProduct/AddProduct";
+import "./UpdateProduct.scss";
 const UpdateProduct = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentView, setCurrentView] = useState({

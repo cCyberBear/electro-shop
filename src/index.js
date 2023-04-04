@@ -8,7 +8,7 @@ import store from "./store";
 import "antd/dist/antd.less";
 import { BrowserRouter } from "react-router-dom";
 // import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
+// import { persistStore } from "redux-persist";
 
 // let persistor = persistStore(store);
 ReactDOM.render(
