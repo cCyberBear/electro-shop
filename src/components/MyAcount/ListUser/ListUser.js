@@ -9,7 +9,7 @@ const ListUser = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCustomer());
-  }, []);
+  }, [dispatch]);
   const customer = useSelector((state) => state.userReducer.customer);
   const columns = [
     {

@@ -16,7 +16,7 @@ const WishList = () => {
       title: "Id",
       dataIndex: "id",
       key: "id",
-      render: (text) => <a onClick={() => navigate(`/shop/${text}`)}>{text}</a>,
+      render: (text) => <p onClick={() => navigate(`/shop/${text}`)}>{text}</p>,
     },
     {
       title: "Image",

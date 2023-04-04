@@ -14,29 +14,33 @@ const Header = () => {
     <div className="Header">
       <div className="container">
         <p>
-          <a>Welcome to Worldwide Electronics Store</a>
+          <a href="#">Welcome to Worldwide Electronics Store</a>
         </p>
         <ul>
           <li>
-            <a>
+            <a href="#">
               <AimOutlined />
               Store Locator
             </a>
           </li>
           <li>
-            <a>
+            <a href="#">
               <InboxOutlined />
               Track Your Order
             </a>
           </li>
           <li>
-            <a onClick={() => navigate("/shop")}>
+            <a href="#" onClick={() => navigate("/shop")}>
               <ShoppingOutlined />
               Shop
             </a>
           </li>
           <li>
-            <a className="last-child" onClick={() => navigate("/my-account")}>
+            <a
+              href="#"
+              className="last-child"
+              onClick={() => navigate("/my-account")}
+            >
               <UserOutlined />
               My Account
             </a>

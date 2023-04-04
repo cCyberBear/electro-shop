@@ -19,7 +19,7 @@ const Orders = () => {
     } else {
       setCustomer(true);
     }
-  }, []);
+  }, [dispatch]);
   const orders = useSelector((state) => state.orderReducer.orders);
   const view = (id) => {
     setIsModalVisible(true);
