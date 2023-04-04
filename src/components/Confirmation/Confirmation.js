@@ -52,7 +52,7 @@ const Confirmation = () => {
     if (error) {
       openNotificationWithIcon("error", "Fail", error);
     }
-  }, [error, success]);
+  }, [error, success, dispatch]);
   const openNotificationWithIcon = (type, mes, des) => {
     notification[type]({
       message: mes,

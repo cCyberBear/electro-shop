@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { baseImage } from "../../../utils/base";
 import "./Special.scss";
 const countTime = (date) => {
   const offDate = new Date(date);
@@ -32,10 +33,7 @@ const Special = () => {
           </p>
         </div>
         <div className="img">
-          <img
-            src="https://khuongduy.herokuapp.com/uploads/image-1649690426830.png"
-            alt=""
-          />
+          <img src={`${baseImage}image-1649690426830.png`} alt="" />
         </div>
         <p className="name">Game Console Controller + USB 3.0 Cable</p>
         <p className="price">

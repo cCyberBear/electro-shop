@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SET_ORDER } from "../type";
+import { base } from "../utils/base";
 const parseISOString = (string) => {
   const date = new Date(string);
   let year = date.getFullYear();
@@ -18,13 +19,9 @@ const parseISOString = (string) => {
 const getOrders = (role) => async (dispatch) => {
   let res;
   if (role === "admin") {
-    res = await axios.get(
-      "https://khuongduy.herokuapp.com/kd/api/v0/order/all-order"
-    );
+    res = await axios.get(`${base}/order/all-order"`);
   } else {
-    res = await axios.get(
-      "https://khuongduy.herokuapp.com/kd/api/v0/order/user-order"
-    );
+    res = await axios.get(`${base}/order/user-order`);
   }
   const data = res.data.data.map((val) => {
     return {

@@ -32,7 +32,7 @@ const App = () => {
     dispatch(getAllData());
     const token = localStorage.getItem("token");
     dispatch(getCurrentUser(token));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

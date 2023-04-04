@@ -1,23 +1,24 @@
 import { notification } from "antd";
 import axios from "axios";
 import {
-  SET_CATEGORY,
-  SET_PRODUCT,
-  SET_CART,
-  SET_COMPARE,
-  SET_WISHLIST,
-  REMOVE_CART,
-  SET_FILTERED,
-  PRODUCT_LOADING,
-  REMOVE_COMPARE,
-  PRODUCT_SEARCH,
-  SET_CART_REPLACE,
   ADD_LOADING,
-  SET_ERROR,
-  SET_LOADING_ORDER,
+  PRODUCT_LOADING,
+  PRODUCT_SEARCH,
+  REMOVE_CART,
+  REMOVE_COMPARE,
   REMOVE_WISHLIST,
+  SET_CART,
+  SET_CART_REPLACE,
+  SET_CATEGORY,
+  SET_COMPARE,
+  SET_ERROR,
+  SET_FILTERED,
+  SET_LOADING_ORDER,
+  SET_PRODUCT,
   SET_TOP_PRODUCT,
+  SET_WISHLIST,
 } from "../type";
+import { base, baseImage } from "../utils/base";
 
 const openNotification = (message, description) => {
   notification.info({
@@ -29,21 +30,15 @@ const openNotification = (message, description) => {
 const validData = (data) => {
   return data.map((pro) => ({
     ...pro,
-    img: `https://khuongduy.herokuapp.com/uploads/${pro.img}`,
+    img: `${baseImage}${pro.img}`,
   }));
 };
 const getAllData = () => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING, payload: true });
-  const resCate = await axios.get(
-    "https://khuongduy.herokuapp.com/kd/api/v0/category/all-category"
-  );
+  const resCate = await axios.get(`${base}/category/all-category`);
   dispatch({ type: SET_CATEGORY, payload: resCate.data.data });
-  const res = await axios.get(
-    "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
-  );
-  const restop = await axios.get(
-    "https://khuongduy.herokuapp.com/kd/api/v0/order/get-top"
-  );
+  const res = await axios.get(`${base}/product/all-product`);
+  const restop = await axios.get(`${base}/order/get-top`);
   const products = validData(res.data.products);
   const topProduct = validData(restop.data.data);
 
@@ -62,14 +57,9 @@ const createProduct = (data) => async (dispatch) => {
   formdata.append("image", data.image);
   try {
     dispatch({ type: SET_ERROR, payload: null });
-    const newProduct = await axios.post(
-      "https://khuongduy.herokuapp.com/kd/api/v0/product/create",
-      formdata
-    );
+    const newProduct = await axios.post(`${base}/product/create`, formdata);
     if (newProduct) {
-      const res = await axios.get(
-        "https://khuongduy.herokuapp.com/kd/api/v0/product/all-product"
-      );
+      const res = await axios.get(`${base}/product/all-product`);
       const products = validData(res.data.products);
       dispatch({ type: SET_PRODUCT, payload: products });
       openNotification("Succes", "Product added successfuly");
@@ -90,10 +80,7 @@ const updateProduct = (id, data) => async (dispatch) => {
   formdata.append("image", data.image);
   try {
     dispatch({ type: SET_ERROR, payload: null });
-    const res = await axios.post(
-      `https://khuongduy.herokuapp.com/kd/api/v0/product/update/${id}`,
-      formdata
-    );
+    const res = await axios.post(`${base}/product/update/${id}`, formdata);
     const products = validData(res.data.data);
     dispatch({ type: SET_PRODUCT, payload: products });
     openNotification("Succes", "Product updated successfuly");
@@ -105,9 +92,7 @@ const updateProduct = (id, data) => async (dispatch) => {
 const deleteProduct = (id) => async (dispatch) => {
   dispatch({ type: ADD_LOADING, payload: true });
   try {
-    const res = await axios.delete(
-      `https://khuongduy.herokuapp.com/kd/api/v0/product/delete/${id}`
-    );
+    const res = await axios.delete(`${base}/product/delete/${id}`);
     const products = validData(res.data.data);
     dispatch({ type: SET_PRODUCT, payload: products });
     openNotification("Succes", "Product deleted successfuly");
@@ -159,10 +144,7 @@ const placeOrder = (data) => async (dispatch) => {
     };
   });
   try {
-    await axios.post(
-      "https://khuongduy.herokuapp.com/kd/api/v0/order/create",
-      cart
-    );
+    await axios.post(`${base}/order/create`, cart);
     dispatch({ type: SET_LOADING_ORDER, payload: false, success: true });
   } catch (error) {
     dispatch({ type: SET_ERROR, payload: "please check quantity of product" });

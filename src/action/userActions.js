@@ -9,6 +9,7 @@ import {
   SET_USER,
 } from "../type";
 import { setAuthToken } from "../helper/axiosHeader";
+import { base } from "../utils/base";
 
 const register = (data) => async (dispatch) => {
   try {
@@ -16,10 +17,7 @@ const register = (data) => async (dispatch) => {
     dispatch({ type: SET_ERROR, payload: null });
     dispatch({ type: REGISTER_ERROR, payload: null });
 
-    const res = await axios.post(
-      "https://khuongduy.herokuapp.com/kd/api/v0/user/register",
-      data
-    );
+    const res = await axios.post(`${base}/user/register`, data);
     setAuthToken(res.data.token);
     dispatch({ type: SET_USER, payload: res.data.user });
     localStorage.setItem("token", res.data.token);
@@ -34,10 +32,7 @@ const login = (data) => async (dispatch) => {
     dispatch(setLoading(SET_LOADING1, true));
     dispatch({ type: SET_ERROR, payload: null });
     dispatch({ type: REGISTER_ERROR, payload: null });
-    const res = await axios.post(
-      "https://khuongduy.herokuapp.com/kd/api/v0/user/login",
-      data
-    );
+    const res = await axios.post(`${base}/user/login`, data);
     setAuthToken(res.data.token);
     dispatch({ type: SET_USER, payload: res.data.user });
     localStorage.setItem("token", res.data.token);
@@ -52,10 +47,7 @@ const changePassword = (data) => async (dispatch) => {
     dispatch(setLoading(SET_LOADING1, true));
     dispatch({ type: SET_ERROR, payload: null });
     console.log(axios.defaults.headers["Authorization"]);
-    const res = await axios.patch(
-      "https://khuongduy.herokuapp.com/kd/api/v0/user/change-password",
-      data
-    );
+    const res = await axios.patch(`${base}/user/change-password`, data);
 
     console.log(res);
     dispatch({ type: SET_USER, payload: null });
@@ -70,9 +62,7 @@ const getCurrentUser = (token) => async (dispatch) => {
   try {
     dispatch({ type: AUTHING, payload: true });
     setAuthToken(token);
-    const res = await axios.get(
-      "https://khuongduy.herokuapp.com/kd/api/v0/user/me"
-    );
+    const res = await axios.get(`${base}/user/me`);
     dispatch({ type: SET_USER, payload: res.data.user });
   } catch (error) {
     setAuthToken(false);
@@ -80,16 +70,11 @@ const getCurrentUser = (token) => async (dispatch) => {
   dispatch({ type: AUTHING, payload: false });
 };
 const updateDeliveryInfo = (data) => async (dispatch) => {
-  const res = await axios.patch(
-    "https://khuongduy.herokuapp.com/kd/api/v0/user/user-shipment",
-    data
-  );
+  const res = await axios.patch(`${base}/user/user-shipment`, data);
   dispatch({ type: SET_USER, payload: res.data.user });
 };
 const getAllCustomer = () => async (dispatch) => {
-  const res = await axios.get(
-    "https://khuongduy.herokuapp.com/kd/api/v0/user/all-user"
-  );
+  const res = await axios.get(`${base}/user/all-user`);
   dispatch({ type: SET_CUSTOMER, payload: res.data.users });
 };
 const setLoading = (type, loading) => (dispatch) => {
